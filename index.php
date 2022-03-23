@@ -30,12 +30,13 @@
                 .$row['eventTime']."<br>";
             }
         }
-        
+
         /* test session variables
         echo "id: ".$_SESSION['sessionId']."<br>
         username: ".$_SESSION['sessionUser']."<br>
         Role: ".$_SESSION['sessionRole'];
         */
+
     } else {
         header("location: login.php?error=notloggedin");
     }
