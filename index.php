@@ -16,19 +16,21 @@
     if (isset($_SESSION['sessionId'])) {
         echo "You are logged in!<br>";
 
-        /*
         // display event list
         $query = "SELECT * from event";
         $result = mysqli_query($db, $query);
         $resultCheck = mysqli_num_rows($result);
         if ($resultCheck > 0) {
             while ($row = mysqli_fetch_assoc($result)) {
-                echo $row['eventId'].$row['eventName']."<br>";
+                echo $row['eventId']." "
+                .$row['eventName']." "
+                .$row['eventType']." "
+                .$row['eventCategory']." "
+                .$row['eventDescription']." "
+                .$row['eventTime']."<br>";
             }
         }
-        */
         
-
         /* test session variables
         echo "id: ".$_SESSION['sessionId']."<br>
         username: ".$_SESSION['sessionUser']."<br>
