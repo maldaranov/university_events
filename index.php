@@ -15,12 +15,19 @@
     // display the index page iff the user is logged in
     if (isset($_SESSION['sessionId'])) {
         echo "You are logged in!<br>";
+
+        // display event list
         $query = "SELECT * from event";
-        $events_result = mysqli_query($db, $query);
-        while ($events = mysqli_fetch_assoc($events_result)) {
-            echo $events['eventName']."<br";
+        $result = mysqli_query($db, $query);
+        $resultCheck = mysqli_num_rows($result);
+        if ($resultCheck > 0) {
+            while ($row = mysqli_fetch_assoc($result)) {
+                echo $row['eventId']."<br>";
+            }
         }
-        /*
+        
+
+        /* test session variables
         echo "id: ".$_SESSION['sessionId']."<br>
         username: ".$_SESSION['sessionUser']."<br>
         Role: ".$_SESSION['sessionRole'];
