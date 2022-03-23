@@ -11,11 +11,11 @@ if (isset($_POST['submit'])) {
     // check for empty fields
         // if username field is empty
     if (empty($username)) {
-        header("location ../login.php?error=emptyfield&username");
+        header("location: ../login.php?error=emptyfield&username");
         exit();
         // if password field is empty
     } elseif (empty($password)) {
-        header("location ../login.php?error=emptyfield&username");
+        header("location: ../login.php?error=emptyfield&username");
         exit();
 
 
@@ -23,7 +23,7 @@ if (isset($_POST['submit'])) {
         $query = "SELECT * FROM user WHERE username = ?";
         $stmt = mysqli_stmt_init($db);
         if (!mysqli_stmt_prepare($stmt, $query)) {
-            header("location ../login.php?error=sqlerror");
+            header("location: ../login.php?error=sqlerror");
             exit();
         } else {
             mysqli_stmt_bind_param($stmt, "s", $username);
@@ -36,7 +36,7 @@ if (isset($_POST['submit'])) {
                 // $passCheck = password_verify($password, $row['password']);
                 // if password do not match
                 if (strcmp($password,$row['password']) != 0) {
-                    header("location ../login.php?wrongpassword");
+                    header("location: ../login.php?wrongpassword");
                     exit();
                 // if password match start the SESSION and save SESSION global variables
                 } elseif (strcmp($password,$row['password']) == 0) {
@@ -44,20 +44,20 @@ if (isset($_POST['submit'])) {
                     $_SESSION['sessionId'] = $row['userId'];
                     $_SESSION['sessionUser'] = $row['username'];
                     $_SESSION['sessionRole'] = $row['roleId'];
-                    header("location ../index.php?success=loggedin");
+                    header("location: ../index.php?success=loggedin");
                     exit();
                 } else {
-                    header("location ../login.php?wrongsomething");
+                    header("location: ../login.php?wrongsomething");
                     exit();
                 }
             } else {
-                header("location ../login.php?error=nosuchuser");
+                header("location: ../login.php?error=nosuchuser");
                 exit();
             }   
         }
     }
 } else {
-    header("location ../index.php?error=accessforbidden");
+    header("location: ../index.php?error=accessforbidden");
     exit();
 }
 
