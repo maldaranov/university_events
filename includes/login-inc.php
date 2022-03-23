@@ -20,9 +20,9 @@ if (isset($_POST['submit'])) {
 
 
     } else {
-        $sql = "SELECT * FROM users WHERE username = ?";
+        $query = "SELECT * FROM user WHERE username = ?";
         $stmt = mysqli_stmt_init($db);
-        if (!mysqli_stmt_prepare($stmt, $sql)) {
+        if (!mysqli_stmt_prepare($stmt, $query)) {
             header("Location: ../login.php?error=sqlerror");
             exit();
         } else {

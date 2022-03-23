@@ -6,6 +6,7 @@
         // store username, password, confirmPass from the form in register.php
         $firstname = $_POST['firstName'];
         $lastname = $_POST['lastName'];
+        $email = $_POST['email'];
         $username = $_POST['username'];
         $password = $_POST['password'];
         $confirmPass = $_POST['confirmPassword'];
@@ -14,53 +15,57 @@
         // check for empty fields
         if (empty($firstname)) {
             // is firstname field empty
-            header("Location: ../register.php?error=emptyfield&firstname=".$firstname);
+            header("location: ../register.php?error=emptyfield&firstname=".$firstname);
             exit();
         } elseif (empty($lastname)) {
             // is lastname field empty
-            header("Location: ../register.php?error=emptyfield&lastname=".$lastname);
+            header("location: ../register.php?error=emptyfield&lastname=".$lastname);
             exit();
+        } elseif (empty($email)) {
+             // is email field empty
+             header("location: ../register.php?error=emptyfield&email=".$email);
+             exit();
             // is username field empty
         } elseif (empty($username)) {
-            header("Location: ../register.php?error=emptyfield&username=".$username);
+            header("location: ../register.php?error=emptyfield&username=".$username);
             exit();
             // is password field empty
         } elseif (empty($password)) {
-            header("Location: ../register.php?error=emptyfield&password=".$password);
+            header("location: ../register.php?error=emptyfield&password=".$password);
             exit();
             // is confirmPass field empty
         } elseif (empty($confirmPass)) {
-            header("Location: ../register.php?error=emptyfield&confirmPass=".$confirmPass);
+            header("location: ../register.php?error=emptyfield&confirmPass=".$confirmPass);
             exit(); 
 
         // fields' character restrictions
         } elseif (!preg_match("/^[a-zA-Z0-9]*/",$username)) {
-            header("Location: ../register.php?error=invalidusername&username=".$username);
+            header("location: ../register.php?error=invalidusername&username=".$username);
             exit();
             // restrict the firstname to the a-zA-Z
         } elseif (!preg_match("/^[a-zA-Z]*/", $firstname)) {
-            header("Location: ../register.php?error=invalidfirstname&firstName=".$firstName);
+            header("location: ../register.php?error=invalidfirstname&firstName=".$firstName);
             exit();
             // restrict the lastname to the a-zA-Z
         } elseif (!preg_match("/^[a-zA-Z]*/", $lastname)) {
-            header("Location: ../register.php?error=invalidlastname&lastName=".$lastName);
+            header("location: ../register.php?error=invalidlastname&lastName=".$lastName);
             exit();
 
         
         // check if password is the same as confirmPass
         } elseif ($password !== $confirmPass) {
-            header("Location:../register.php?error=passwordsdonotmatch&:".$confirmPass."<->".$confirmPass);
+            header("location:../register.php?error=passwordsdonotmatch&:".$confirmPass."<->".$confirmPass);
             exit();
 
         // REGISTRATION
         } else {
             // create a query
-            $sql = "SELECT username FROM users WHERE username = ?";
+            $query = "SELECT username FROM user WHERE username = ?";
             // create a statement
             $stmt = mysqli_stmt_init($db);
             // check is statement was prepared
-            if (!mysqli_stmt_prepare($stmt, $sql)) {
-                header("Location:../register.php?error=sqlerror");
+            if (!mysqli_stmt_prepare($stmt, $query)) {
+                header("location:../register.php?error=sqlerror");
                 exit();
             } else {
                 // CHECK: USERNAME EXISTS
@@ -74,18 +79,18 @@
                 $rowCount = mysqli_stmt_num_rows();
                 // if there is already such username (rowCount > 0), then error
                 if (rowCount > 0) {
-                    header("Location: ../register.php?error=usernametaken");
+                    header("location: ../register.php?error=usernametaken");
                     exit();
 
                 // REGISTER
                 } else {
                     // create a query
-                    $sql = "INSERT INTO users (firstName, lastName, username, password, roleId) VALUES (?, ?, ?, ?, ?)";
+                    $query = "INSERT INTO user (firstName, lastName, username, password, roleId) VALUES (?, ?, ?, ?, ?)";
                     // create a statement
                     $stmt = mysqli_stmt_init($db);
                     // check if statement was prepared
-                    if (!mysqli_stmt_prepare($stmt, $sql)) {
-                        header("Location: ../register.php?error=sqlerror");
+                    if (!mysqli_stmt_prepare($stmt, $query)) {
+                        header("location: ../register.php?error=sqlerror");
                         exit();
                     } else {
                         // * hash the password and bind it if you want it hashed
@@ -93,7 +98,7 @@
                         // insert all the data from the registration form into the database
                         mysqli_stmt_bind_param($stmt, "ssssi", $firstname, $lastname, $username, $password, $roleId);
                         mysqli_stmt_execute($stmt);
-                        header("Location: ../register.php?success=registered");
+                        header("location: ../login.php?success=registered");
                         exit();
                     }
                 }
