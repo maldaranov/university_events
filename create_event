@@ -1,6 +1,7 @@
 <?php
     require_once 'includes/header.php';
 ?>
+
 <div>
     <h1> Create Event </h1>
 
@@ -9,6 +10,7 @@
             <button type="submit" name="submit">Create event</button>
     </form>
 </div>
+
 <?php
     require_once 'includes/footer.php';
 ?>

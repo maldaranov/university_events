@@ -1,6 +1,7 @@
 <?php
     require_once 'includes/header.php';
 ?>
+
 <div>
     <h1> Register</h1>
     <p> Already have an account? <a href="login.php"> Login!</a></p>
@@ -15,6 +16,7 @@
             <button type="submit" name="submit">Register</button>
     </form>
 </div>
+
 <?php
     require_once 'includes/footer.php';
 ?>
