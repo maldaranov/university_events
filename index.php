@@ -15,8 +15,9 @@
     // display the index page iff the user is logged in
     if (isset($_SESSION['sessionId'])) {
         echo "You are logged in!<br>";
+        
 
-        // display event list
+        /* display event list
         $query = "SELECT * from event";
         $result = mysqli_query($db, $query);
         $resultCheck = mysqli_num_rows($result);
@@ -30,7 +31,8 @@
                 .$row['eventTime']."<br>";
             }
         }
-        
+        */
+
         /* test session variables
         echo "id: ".$_SESSION['sessionId']."<br>
         username: ".$_SESSION['sessionUser']."<br>
@@ -45,3 +47,4 @@
 <?php
     require_once 'includes/footer.php';
 ?>
+

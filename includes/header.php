@@ -14,7 +14,7 @@
             <nav>
                 <ul>
                     <li><a href="index.php"> Home </a></li>
-                    <li><a href="index.php"> About </a></li>
+                    <li><a href="create_event.php"> Create Event </a></li>
                     <li class = "right"><a href="index.php?logout='1'"> Log Out </a></li>
                 </ul>
             </nav>
