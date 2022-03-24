@@ -2,7 +2,7 @@
     require_once 'includes/header.php';
 ?>
 <div>
-    <h1> Log in</h1>
+    <h1> Log in </h1>
     <p> No account? <a href="register.php"> Register here!</a></p>
 
     <form action="includes/login-inc.php" method="post">
