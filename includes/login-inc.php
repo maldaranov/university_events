@@ -3,11 +3,11 @@
 if (isset($_POST['submit'])) {
     require 'server.php'; // grab the database
 
-    // store username and password from the form in login.php
+    // INPUT
     $username = $_POST['username'];
     $password = $_POST['password'];
 
-    // check for empty fields
+    // CHECK: empty fields
         // if username field is empty
     if (empty($username)) {
         header("location: ../login.php?error=emptyfield&username");
@@ -17,7 +17,7 @@ if (isset($_POST['submit'])) {
         header("location: ../login.php?error=emptyfield&username");
         exit();
 
-
+    // CHECK: account found  
     } else {
         $query = "SELECT * FROM user WHERE username = ?";
         $stmt = mysqli_stmt_init($db);
@@ -29,7 +29,7 @@ if (isset($_POST['submit'])) {
             mysqli_stmt_execute($stmt);
             $result = mysqli_stmt_get_result($stmt);
 
-            // if we can fetch such username, check password
+            // CHECK: username
             if ($row = mysqli_fetch_assoc($result)) {
                 // password_verify returns a boolean checking hashed passwords
                 // $passCheck = password_verify($password, $row['password']);
@@ -37,7 +37,7 @@ if (isset($_POST['submit'])) {
                 if (strcmp($password,$row['password']) != 0) {
                     header("location: ../login.php?wrongpassword");
                     exit();
-                // if password match start the SESSION and save SESSION global variables
+                // CHECK: password
                 } elseif (strcmp($password,$row['password']) == 0) {
                     session_start();
                     $_SESSION['sessionId'] = $row['userId'];

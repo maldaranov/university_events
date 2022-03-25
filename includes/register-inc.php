@@ -2,7 +2,7 @@
     if (isset($_POST['submit'])) {
         require 'server.php'; // grab the database
 
-        // store username, password, confirmPass from the form in register.php
+        // INPUT
         $firstname = $_POST['firstName'];
         $lastname = $_POST['lastName'];
         $email = $_POST['email'];
