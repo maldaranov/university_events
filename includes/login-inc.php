@@ -1,8 +1,7 @@
 <?php
 
 if (isset($_POST['submit'])) {
-    // Add database connection when LOGIN button is clicked
-    require 'server.php';
+    require 'server.php'; // grab the database
 
     // store username and password from the form in login.php
     $username = $_POST['username'];
