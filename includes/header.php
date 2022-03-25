@@ -1,7 +1,7 @@
 <?php
     session_start();
     require_once 'includes/server.php';
-    require_once 'register-inc.php'
+    require_once 'register-inc.php' // for logout functionality
 ?>
 <html>
     <head>

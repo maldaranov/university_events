@@ -1,7 +1,6 @@
 <?php
     if (isset($_POST['submit'])) {
-        // Add database connection when REGISTER button is clicked
-        require 'server.php';
+        require 'server.php'; // grab the database
 
         // store username, password, confirmPass from the form in register.php
         $firstname = $_POST['firstName'];
