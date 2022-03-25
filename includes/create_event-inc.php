@@ -31,4 +31,6 @@
             header("location: ../create_event.php?error=emptyfield&eventDescription=".$event_description);
             exit();
         }
+
+        
 ?>
