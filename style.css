@@ -50,7 +50,7 @@ footer p {
 
 h1 {
     text-transform: uppercase;
-    font-size: 48px;
+    font-size: 30px;
 }
 
 p a {
@@ -63,6 +63,11 @@ div {
     text-align: center;
 }
 
+label {
+    display: block;
+    margin: 15px auto;
+}
+
 input {
     display: block;
     margin: 15px auto;
@@ -71,6 +76,22 @@ input {
     width: 240px;
     height: 30px;
     background-color: #f2f2f2;
+}
+
+select {
+    display: block;
+    margin: 15px auto;
+    text-align: center;
+    box-shadow: 0 0 10px #666;
+    width: 240px;
+    height: 30px;
+    background-color: #f2f2f2;
+}
+
+textarea {
+    display: block;
+    resize: none;
+    margin: 15px auto;
 }
 
 button {
