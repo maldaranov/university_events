@@ -84,7 +84,7 @@
                 // REGISTER
                 } else {
                     // create a query
-                    $query = "INSERT INTO user (firstName, lastName, username, password, roleId) VALUES (?, ?, ?, ?, ?)";
+                    $query = "INSERT INTO user (username, password, email, firstName, lastName, roleId) VALUES (?, ?, ?, ?, ?, ?)";
                     // create a statement
                     $stmt = mysqli_stmt_init($db);
                     // check if statement was prepared
@@ -95,7 +95,7 @@
                         // * hash the password and bind it if you want it hashed
                         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
                         // insert all the data from the registration form into the database
-                        mysqli_stmt_bind_param($stmt, "ssssi", $firstname, $lastname, $username, $password, $roleId);
+                        mysqli_stmt_bind_param($stmt, "sssssi", $username, $password, $email, $firstname, $lastname, $roleId);
                         mysqli_stmt_execute($stmt);
                         header("location: ../login.php?success=registered");
                         exit();
