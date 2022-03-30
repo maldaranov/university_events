@@ -68,6 +68,18 @@
                             header("location: ../create_event.php?error=timetaken");
                         }
                     }
+                // if time slot is available at a given location and date, create the event
+                } else {
+                    $query = "INSERT INTO event (eventName, eventLocation, eventCategory, eventDate, eventTime, eventPrivacy, eventDescription) VALUES (?, ?, ?, ?, ?, ?, ?)";
+                    $stmt = mysqli_stmt_init($db);
+                    if (!mysqli_stmt_prepare($stmt, $query)) {
+                        header("location: ../create_event.php?error=sqlerror");
+                        exit();
+                    } else {
+                        mysqli_stmt_bind_param($stmt, "ssssiis", $event_name, $event_location, $event_category, $event_date, $event_time, $event_privacy, $event_description);
+                        mysqli_stmt_execute($stmt);
+                        header("location: ../index.php?success=eventcreated");
+                    }
                 }
             }
 
