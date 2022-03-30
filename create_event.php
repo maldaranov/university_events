@@ -12,7 +12,7 @@
 
             <!-- event location input-->
             <label for="eLocation"> Location: </label>
-            <textarea id="eLocation" name="eventDescription" rows=5 cols=27 maxlength=500 placeholder="address"></textarea>
+            <textarea id="eLocation" name="eventLocation" rows=5 cols=27 maxlength=500 placeholder="address"></textarea>
 
             <!-- event category input -->
             <label for="eCategory"> Category:
