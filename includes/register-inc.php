@@ -53,7 +53,7 @@
         
         // check if password is the same as confirmPass
         } elseif ($password !== $confirmPass) {
-            header("location:../register.php?error=passwordsdonotmatch&:".$confirmPass."<->".$confirmPass);
+            header("location: ../register.php?error=passwordsdonotmatch&:".$confirmPass."<->".$confirmPass);
             exit();
 
         // REGISTRATION
@@ -64,7 +64,7 @@
             $stmt = mysqli_stmt_init($db);
             // check is statement was prepared
             if (!mysqli_stmt_prepare($stmt, $query)) {
-                header("location:../register.php?error=sqlerror");
+                header("location: ../register.php?error=sqlerror");
                 exit();
             } else {
                 // CHECK: USERNAME EXISTS
