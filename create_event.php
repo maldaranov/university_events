@@ -57,7 +57,3 @@
             <p><button type="submit" name="submit">HOST</button></p>
     </form>
 </div>
-
-<?php
-    require_once 'includes/footer.php';
-?>
