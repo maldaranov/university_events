@@ -9,13 +9,13 @@
         unset($_SESSION['sessionId']);
         unset($_SESSION['sessionUser']);
         unset($_SESSION['sessionRole']);
+        unset($_SESSION['univName']);
         header("location: login.php");
     }
 
     // display the index page iff the user is logged in
     if (isset($_SESSION['sessionId'])) {
         echo "You are logged in!<br>";
-        
 
         /* display event list
         $query = "SELECT * from event";

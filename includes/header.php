@@ -6,7 +6,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title> Document </title>
+        <title> University Events </title>
         <link rel="stylesheet" type="text/css" href="style.css?v=1">
     </head>
     <body>
@@ -14,9 +14,10 @@
             <nav>
                 <ul>
                     <li><a href="index.php"> Home </a></li>
-                    <!-- show the "create event" button only to admins of RSOs-->
+                    <!-- admins can create RSOs and events-->
                     <?php if (isset($_SESSION['sessionId']) && ($_SESSION['sessionRole'] = 3)) { ?>
                         <li><a href="create_event.php"> Host Event </a></li>
+                        <li><a href="create_rso.php"> Create RSO </a></li>
                     <?php } ?>
                     <li class = "right"><a href="index.php?logout='1'"> Log Out </a></li>
                 </ul>

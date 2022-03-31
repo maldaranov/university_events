@@ -5,6 +5,7 @@
         // INPUT
         $firstname = $_POST['firstName'];
         $lastname = $_POST['lastName'];
+        $univname = $_POST['univName'];
         $email = $_POST['email'];
         $username = $_POST['username'];
         $password = $_POST['password'];
@@ -20,6 +21,9 @@
             // is lastname field empty
             header("location: ../register.php?error=emptyfield&lastname=".$lastname);
             exit();
+        } elseif (empty($univname)) {
+            // is univname field empty
+            header("location: ../register.php?error=emptyfield?univname=".$univname);
         } elseif (empty($email)) {
              // is email field empty
              header("location: ../register.php?error=emptyfield&email=".$email);
@@ -84,7 +88,7 @@
                 // REGISTER
                 } else {
                     // create a query
-                    $query = "INSERT INTO user (username, password, email, firstName, lastName, roleId) VALUES (?, ?, ?, ?, ?, ?)";
+                    $query = "INSERT INTO user (firstName, lastName, univName, email, username, password, roleId) VALUES (?, ?, ?, ?, ?, ?, ?)";
                     // create a statement
                     $stmt = mysqli_stmt_init($db);
                     // check if statement was prepared

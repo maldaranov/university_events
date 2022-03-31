@@ -43,6 +43,7 @@ if (isset($_POST['submit'])) {
                     $_SESSION['sessionId'] = $row['userId'];
                     $_SESSION['sessionUser'] = $row['username'];
                     $_SESSION['sessionRole'] = $row['roleId'];
+                    $_SESSION['sessionUniv'] = $row['univName'];
                     header("location: ../index.php?success=loggedin");
                     exit();
                 } else {

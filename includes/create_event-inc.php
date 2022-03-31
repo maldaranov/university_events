@@ -54,7 +54,7 @@
             $query = "SELECT * FROM event WHERE eventLocation = ?";
             $stmt = mysqli_stmt_init($db);
             if (!mysqli_stmt_prepare($stmt, $query)) {
-                header("location: ../create_event.php?error=sqlerror1");
+                header("location: ../create_event.php?error=sqlerror");
             } else {
                 mysqli_stmt_bind_param($stmt, 's', $event_location);
                 mysqli_stmt_execute($stmt);
