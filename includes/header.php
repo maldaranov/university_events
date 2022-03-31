@@ -6,8 +6,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title> University Events </title>
-        <link rel="stylesheet" type="text/css" href="style.css?v=1">
+        <link rel="stylesheet" type="text/css" href="style.css?v=51">
     </head>
     <body>
         <header>

@@ -78,7 +78,7 @@
                     } else {
                         mysqli_stmt_bind_param($stmt, "ssssiis", $event_name, $event_location, $event_category, $event_date, $event_time, $event_privacy, $event_description);
                         mysqli_stmt_execute($stmt);
-                        header("location: ../index.php?success=eventcreated");
+                        header("location: ../event_page.php?success=eventcreated");
                     }
                 }
             }
