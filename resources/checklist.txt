@@ -1,17 +1,18 @@
 <<< Web features >>>
 
-    * Login/Logout functionality                (✅)
-        * save session info                     (✅)
+    * Login/Logout functionality                (✅) Maxim
+        * save session info                     (✅) Maxim
 
-    * Register functionality                    (❌)
-        * save email tag after @                (❌)
+    * Register functionality                    (❌) Maxim    
+        * save email tag after @                (❌) Maxim
 
     * List of RSO event requests                (❌)
         * visible to superadmin                 (❌)
         * aprove                                (❌)
         * event creation                        (❌)
 
-    * Event feed                                (✅)
+    * Event feed                                (❌)
+        * list events                           (✅) Cameron 
         * event searchbox                       (❌)
         * resolve privacy                       (❌)
           public - everyone
@@ -25,7 +26,7 @@
         * time conflict check                   (✅)
 
     * Event page                                (❌)
-        * event information                     (✅)
+        * event information                     (✅) Chanxay
         * comment section                       (❌)
             * create comment                    (❌)
             * rate comment                      (❌)
@@ -38,7 +39,7 @@
           create an RSO                         (❌)
         * decide who is admin                   (❌)
 
-    * Create university profile                 (❌)
+    * Create university profile                 (❌) Maxim
     * Register for an event                     (❌)
     * Social media integration
       Share to Facebook/Google                  (❌)
@@ -49,10 +50,14 @@
 * can tell which user is admin of which RSO     (❌)
 
 user:
-    * table                                     (✅)
-    * populate                                  (❌)
+    * table                                     (✅) Maxim
+    * populate                                  (✅) Maxim
     * concurrency                               (❌)  
-    * user roles                                (✅)
+    * user roles                                (✅) Maxim
+
+part_of_rso
+    * table                                     (❌)
+    * populate                                  (❌)
 
 admin:          
     * assign to one university                  (❌)
@@ -60,10 +65,13 @@ admin:
       new table needed for that                 (❌)
 
 university:             
-    * table                                     (❌)
-    * populate                                  (❌)
-    * store a picture                           (❌)
-    * store etag @                              (❌)
+    * table                                     (✅) Maxim    
+    * populate                                  (✅) Maxim    
+    * store a picture link                      (✅) Maxim 
+    * store etag @                              (✅) Maxim 
+    * TRIGGER: 
+      university del -> all students del        (❌)
+    
 
 event:          
     * table                                     (❌ add more attributtes)

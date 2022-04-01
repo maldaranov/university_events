@@ -1,4 +1,7 @@
-../ means go up one directory
+Contributors:
+    Maxim Aldaranov 
+    Chanxay Bounheuangviseth
+    Cameron Berezuk
 
 User roles:
 0 - superadmin
