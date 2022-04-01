@@ -1,10 +1,14 @@
 <<< Web features >>>
 
     * Login/Logout functionality                (✅) Maxim
-        * save session info                     (✅) Maxim
+        * save session variables                (✅) Maxim
 
-    * Register functionality                    (❌) Maxim    
-        * save email tag after @                (❌) Maxim
+    * Register functionality                    (✅) Maxim   
+        * check if university with the given
+          @ domain exists                       (✅) Maxim 
+        * assign univId to the user based on
+          user's email @ tag                    (✅) Maxim
+
 
     * List of RSO event requests                (❌)
         * visible to superadmin                 (❌)
@@ -24,6 +28,8 @@
     * Create/host event                         (❌)
         * create request if not RSO             (❌)
         * time conflict check                   (✅)
+        * create location                       (❌)
+        * create event                          (❌)
 
     * Event page                                (❌)
         * event information                     (✅) Chanxay
@@ -47,63 +53,45 @@
                 
 <<< Database features >>>
 
-* can tell which user is admin of which RSO     (❌)
+university                                      (✅) Maxim
 
-user:
-    * table                                     (✅) Maxim
-    * populate                                  (✅) Maxim
-    * concurrency                               (❌)  
-    * user roles                                (✅) Maxim
+user:                                           (✅) Maxim
+    * concurrency (handled by default?)         (✅) Maxim
+    * roles                                     (✅) Maxim
 
-part_of_rso
-    * table                                     (❌)
-    * populate                                  (❌)
+rso:                                            (✅) Maxim
+    * owned by one admin                        (✅) Maxim
 
-admin:          
-    * assign to one university                  (❌)
-    * assign to one or more RSOs                
-      new table needed for that                 (❌)
+rso_members                                     (✅) Maxim
+TRIGGER: rso_members > 5 set RSO active         (❌) 
 
-university:             
-    * table                                     (✅) Maxim    
-    * populate                                  (✅) Maxim    
-    * store a picture link                      (✅) Maxim 
-    * store etag @                              (✅) Maxim 
-    * TRIGGER: 
-      university del -> all students del        (❌)
-    
+location                                        (✅) Maxim
 
-event:          
-    * table                                     (❌ add more attributtes)
-    * populate                                  (❌)
-    * separate table to link to RSO:
-      | RSOid | eventId | key = ???             (❌)
+event:                                          (✅) Maxim
+    * relate to one location                    (✅) Maxim
+    * relate to one university                  (✅) Maxim
+    * may relate to some RSO                    (✅) Maxim                
 
-time slots:
-    * table                                     (❌)
-      | locationId | date | timeslot | taken |  (❌)
-    * populate as needed                        (❌)   
+public_event                                    (✅) Maxim
 
-comments:
-    * table                                     (❌)
-      | eventId | userId | date | time |
-    * user can add, remove, edit 
-    THEIR comments only                         (❌)
+private_event                                   (✅) Maxim
+    * knows host university                     (✅) Maxim
 
-rating:
-    * table
-      | eventId | rating |                      (❌)
-    
-    
+public_event_request                            (✅) Maxim
+
+comments                                        (✅) Maxim
+
+rating:                                         (✅) Maxim
+TRIGGER: on update on rating, select all
+ratings for that event and calculate new
+rating                                          (❌) 
 
     
-
-
 
 
 User privileges and notes:
 0:  * create a university profile
-    * anything that other users can do
+    * all privileges in the scope of the assigned unviersity
 
 1:  * host/create events
     * assigned to one university and one or more RSOs

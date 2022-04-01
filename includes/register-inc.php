@@ -3,104 +3,95 @@
         require 'server.php'; // grab the database
 
         // INPUT
-        $firstname = $_POST['firstName'];
-        $lastname = $_POST['lastName'];
-        $univname = $_POST['univName'];
+        $full_name = $_POST['fullName'];
         $email = $_POST['email'];
         $username = $_POST['username'];
         $password = $_POST['password'];
-        $confirmPass = $_POST['confirmPassword'];
-        $roleId = 2;
+        $password_confirm = $_POST['passwordConfirm'];
+        $role_id = 2;
+        $univ_id;
 
         // check for empty fields
-        if (empty($firstname)) {
-            // is firstname field empty
-            header("location: ../register.php?error=emptyfield&firstname=".$firstname);
+        if (empty($full_name)) {
+            // is fullName field empty
+            header("location: ../register.php?error=emptyfield&fullNam&:".$full_name);
             exit();
-        } elseif (empty($lastname)) {
-            // is lastname field empty
-            header("location: ../register.php?error=emptyfield&lastname=".$lastname);
-            exit();
-        } elseif (empty($univname)) {
-            // is univname field empty
-            header("location: ../register.php?error=emptyfield?univname=".$univname);
         } elseif (empty($email)) {
-             // is email field empty
-             header("location: ../register.php?error=emptyfield&email=".$email);
+             // is universityEmail field empty
+             header("location: ../register.php?error=emptyfield&emai&:".$email);
              exit();
             // is username field empty
         } elseif (empty($username)) {
-            header("location: ../register.php?error=emptyfield&username=".$username);
+            header("location: ../register.php?error=emptyfield&usernam&:".$username);
             exit();
             // is password field empty
         } elseif (empty($password)) {
-            header("location: ../register.php?error=emptyfield&password=".$password);
+            header("location: ../register.php?error=emptyfield&passwor&:".$password);
             exit();
-            // is confirmPass field empty
-        } elseif (empty($confirmPass)) {
-            header("location: ../register.php?error=emptyfield&confirmPass=".$confirmPass);
+            // is passwordConfirm field empty
+        } elseif (empty($password_confirm)) {
+            header("location: ../register.php?error=emptyfield&passwordConfirm&:".$password_confirm);
             exit(); 
-
-        // fields' character restrictions
+        
+        // fields' character restrictions (optional)
         } elseif (!preg_match("/^[a-zA-Z0-9]*/",$username)) {
-            header("location: ../register.php?error=invalidusername&username=".$username);
+            header("location: ../register.php?error=invalid&usernam&:".$username);
             exit();
-            // restrict the firstname to the a-zA-Z
-        } elseif (!preg_match("/^[a-zA-Z]*/", $firstname)) {
-            header("location: ../register.php?error=invalidfirstname&firstName=".$firstName);
+            // restrict the full_name to the a-zA-Z
+        } elseif (!preg_match("/^[a-zA-Z]*/", $full_name)) {
+            header("location: ../register.php?error=invalid&fullNam&:".$full_name);
             exit();
-            // restrict the lastname to the a-zA-Z
-        } elseif (!preg_match("/^[a-zA-Z]*/", $lastname)) {
-            header("location: ../register.php?error=invalidlastname&lastName=".$lastName);
-            exit();
-
         
         // check if password is the same as confirmPass
-        } elseif ($password !== $confirmPass) {
-            header("location: ../register.php?error=passwordsdonotmatch&:".$confirmPass."<->".$confirmPass);
+        } elseif ($password !== $password_confirm) {
+            header("location: ../register.php?error=passwordsdonotmatch&:".$password."!=".$password_confirm);
             exit();
 
         // REGISTRATION
         } else {
-            // create a query
+            // SAVE: univId into the user record
+                // get univ_tag from the univ_email
+            $pos = strpos($email, '@');
+            $univ_tag = substr($email, $pos);
+            $univ_tag_noesc = mysqli_real_escape_string($db, $univ_tag);
+                // lookup and save univId using univ_tag
+            $query = "SELECT univId FROM university WHERE univTag = '$univ_tag_noesc'";
+            $result = mysqli_query($db, $query);
+                // CHECK: university in database
+            if (!mysqli_num_rows($result)) {
+                header("location: ../register.php?error=nosuchuniversit&:".$univ_tag."!=".$result);
+                exit();
+            } else {
+                $univ_id = mysqli_query($db, $query);
+            }
+
             $query = "SELECT username FROM user WHERE username = ?";
-            // create a statement
-            $stmt = mysqli_stmt_init($db);
-            // check is statement was prepared
-            if (!mysqli_stmt_prepare($stmt, $query)) {
+            $stmt = mysqli_stmt_init($db); // $stmt: initialize
+            if (!mysqli_stmt_prepare($stmt, $query)) { // $stmt: prepare
                 header("location: ../register.php?error=sqlerror");
                 exit();
             } else {
-                // CHECK: USERNAME EXISTS
-                    // bind the parameters to the statement that we want to check in the databaase
-                mysqli_stmt_bind_param($stmt, "s", $username);
-                    // execute the previously set $stmt statement
-                mysqli_stmt_execute($stmt); 
-                    // stores the result from the database in the $stmt
-                mysqli_stmt_store_result($stmt);
-                    // count the rows in the resulting $stmt
-                $rowCount = mysqli_stmt_num_rows();
-                // if there is already such username (rowCount > 0), then error
+                // CHECK_1: username taken
+                mysqli_stmt_bind_param($stmt, "s", $username); // $stmt: bind needed parameters
+                mysqli_stmt_execute($stmt); // $stmt: execute
+                mysqli_stmt_store_result($stmt); // $stmt: store result inti internal buffer
+                $rowCount = mysqli_stmt_num_rows($stmt); // buffer: count rows
+                // username found
                 if ($rowCount > 0) {
                     header("location: ../register.php?error=usernametaken");
-                    exit();
-
+                    exit();   
                 // REGISTER
                 } else {
-                    // create a query
-                    $query = "INSERT INTO user (firstName, lastName, univName, email, username, password, roleId) VALUES (?, ?, ?, ?, ?, ?, ?)";
-                    // create a statement
-                    $stmt = mysqli_stmt_init($db);
-                    // check if statement was prepared
-                    if (!mysqli_stmt_prepare($stmt, $query)) {
+                    $query = "INSERT INTO user (fullName, univId, email, username, password, roleId) VALUES (?, ?, ?, ?, ?, ?)";
+                    $stmt = mysqli_stmt_init($db); // $stmt: initialize
+                    if (!mysqli_stmt_prepare($stmt, $query)) { // $stmt: prepare
                         header("location: ../register.php?error=sqlerror");
                         exit();
                     } else {
-                        // * hash the password and bind it if you want it hashed
-                        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
-                        // insert all the data from the registration form into the database
-                        mysqli_stmt_bind_param($stmt, "ssssssi", $firstname, $lastname, $univname, $email, $username, $password, $roleId);
-                        mysqli_stmt_execute($stmt);
+                        // SECURITY: password encryption (optional)
+                        // $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+                        mysqli_stmt_bind_param($stmt, "sisssi", $full_name, $univ_id, $email, $username, $password, $role_id); // $stmt: bind needed parameters
+                        mysqli_stmt_execute($stmt); // $stmt: execute
                         header("location: ../login.php?success=registered");
                         exit();
                     }

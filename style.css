@@ -78,6 +78,11 @@ input {
     background-color: #f2f2f2;
 }
 
+.required:after {
+    content:" *";
+    color: red;
+  }
+
 select {
     display: block;
     margin: 15px auto;

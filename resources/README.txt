@@ -8,13 +8,12 @@ User roles:
 1 - admin
 2 - student
 
-Time Slots
-1. 9:00 a.m - 10:00 a.m 
-2. 10:00 a.m - 11:00 a.m 
-3. 11:00 a.m - 12 p.m 
-4. 12 p.m - 1:00 p.m 
-5. 1:00 p.m - 2:00 p.m 
-6. 2:00 p.m - 3:00 p.m 
-7. 3:00 p.m - 4:00 p.m 
-8. 4:00 p.m - 5:00 p.m
-9. 5:00 p.m - 6:00 p.m
+Event time: all events are one hour long and store only start time (24-hour format for values)
+Value: 6 -> 6 a.m - 7 a.m
+Value: 7 -> 7 a.m - 8 a.m
+etc.
+
+Privacy:
+0 - public
+1 - private
+2 - rso
