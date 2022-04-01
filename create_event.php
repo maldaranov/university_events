@@ -7,11 +7,11 @@
 
     <form action="includes/create_event-inc.php" method="post">
             <!-- event name input -->
-            <label for="eName"> Title: </label>
+            <label class="required" for="eName"> Title </label>
             <input id="eName" type="text" required size=30 name="eventName" placeholder="Title">
 
             <!-- event category input -->
-            <label for="eCategory"> Category: </label>
+            <label class="required" for="eCategory"> Category </label>
             <select id="eCategory" name="eventCategory">
                 <option value=""> Choose a category </option>
                 <option value="Academic ">  Academic </option>
@@ -34,11 +34,11 @@
             </select>        
 
             <!-- event date input -->
-            <label for="eDate"> Date: </label>
+            <label class="required" for="eDate"> Date </label>
             <input id="eDate" type="date" name="eventDate" placeholder="date">
 
             <!-- event time slot input -->
-            <label for="eTime"> Time slot: </label>
+            <label class="required" for="eTime"> Time slot </label>
             <select id="eTime" name="eventTime">
                 <option value=""> Choose a time slot </option>
                 <option value="1"> 6:00 a.m - 7:00 a.m </option>
@@ -59,24 +59,29 @@
                 <option value="12"> 10:00 p.m - 11:00 p.m </option>
             </select>
 
+            <!-- event contact phone input -->
+            <label class="required" for="ePhone"> Contact Phone </label>
+            <input id="ePhone" type="tel" name="eventPhone" placeholder="Phone Number">
+
+            <!-- event email input -->
+            <label class="required" for="eDate"> Contact Email </label>
+            <input id="eEmail" type="email" name="eventEmail" placeholder="Email">
+
             <!-- event privacy input -->
-            <label for="ePrivacy"> Privacy:
+            <label class="required" for="ePrivacy"> Privacy </label>
             <select id="ePrivacy" name="eventPrivacy">
                 <option value="0"> Public </option>
                 <option value="1"> Private </option>
                 <option value="2"> RSO </option>
-            </select>
+            </select>   
+            
+            <!-- event rso id input -->
+            <label for="eRsoId"> RSO Name </label>
+            <input id="eRsoId" type="text" name="eventRsoId" placeholder="RSO Name">            
 
             <!-- event location input-->
-            <label for="eLocation"> Location: </label>
+            <label class="required" for="eLocation"> Location </label>
             <textarea id="eLocation" name="eventLocation" rows=5 cols=27 maxlength=500 placeholder="1234 Street Name,&#10City, State, 12345"></textarea>
-
-            
-
-
-
-
-
 
             <!-- event description input -->
             <label for="eDescription"> Description: </label>

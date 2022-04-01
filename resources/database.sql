@@ -86,7 +86,7 @@ DROP TABLE IF EXISTS event;
 CREATE TABLE event (
 	eventId int AUTO_INCREMENT,
     eventName varchar(255) NOT NULL UNIQUE,
-    eventCategory varchar(255),
+    eventCategory varchar(255) NOT NULL,
     eventDescription varchar(255),
     eventDate date NOT NULL,
     eventTime int NOT NULL,
@@ -94,8 +94,8 @@ CREATE TABLE event (
     eventContactPhone varchar(11) NOT NULL,
     eventContactEmail varchar(255) NOT NULL,
     eventUnivId int not NULL,
-    eventRsoId int,
     eventPrivacy tinyint not NULL,
+    eventRsoId int,
     PRIMARY KEY (eventId),
     FOREIGN KEY (eventLocationId) REFERENCES location (locationId) ON DELETE CASCADE,
     UNIQUE (eventDate, eventTime, eventLocationId)

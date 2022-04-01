@@ -42,8 +42,8 @@
                 // $event_phone = $event_info['eventContactPhone'];
                 // $event_email = $event_info['eventContactEmail'];
                 // $event_univId = $event_info['eventUnivId'];
-                // $event_rosId = $event_info['eventRsoId'];
                 // $event_privacy = $event_info['eventPrivacy'];
+                // $event_rosId = $event_info['eventRsoId'];
 
                 // TABLE: fill the table with events, click sends user to an event page
                 $display_block .= "
