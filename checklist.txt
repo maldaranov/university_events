@@ -1,0 +1,101 @@
+<<< Web features >>>
+
+    * Login/Logout functionality                (✅)
+        * save session info                     (✅)
+
+    * Register functionality                    (❌)
+        * save email tag after @                (❌)
+
+    * List of RSO event requests                (❌)
+        * visible to superadmin                 (❌)
+        * aprove                                (❌)
+        * event creation                        (❌)
+
+    * Event feed                                (✅)
+        * event searchbox                       (❌)
+        * resolve privacy                       (❌)
+          public - everyone
+          private - same university as user
+          RSO - same RSO as user
+
+        * separate RSO and public events        (❌)
+
+    * Create/host event                         (❌)
+        * create request if not RSO             (❌)
+        * time conflict check                   (✅)
+
+    * Event page                                (❌)
+        * event information                     (✅)
+        * comment section                       (❌)
+            * create comment                    (❌)
+            * rate comment                      (❌)
+            * edit comment                      (❌)
+        * Bing or Google maps integration       (❌)
+
+    * Create RSO                                (❌)
+        * send request for creation             (❌)
+        * if there is four or more requests
+          create an RSO                         (❌)
+        * decide who is admin                   (❌)
+
+    * Create university profile                 (❌)
+    * Register for an event                     (❌)
+    * Social media integration
+      Share to Facebook/Google                  (❌)
+
+                
+<<< Database features >>>
+
+* can tell which user is admin of which RSO     (❌)
+
+user:
+    * table                                     (✅)
+    * populate                                  (❌)
+    * concurrency                               (❌)  
+    * user roles                                (✅)
+
+admin:          
+    * assign to one university                  (❌)
+    * assign to one or more RSOs                
+      new table needed for that                 (❌)
+
+university:             
+    * table                                     (❌)
+    * populate                                  (❌)
+    * store a picture                           (❌)
+    * store etag @                              (❌)
+
+event:          
+    * table                                     (❌ add more attributtes)
+    * populate                                  (❌)
+    * separate table to link to RSO:
+      | RSOid | eventId | key = ???             (❌)
+
+time slots:
+    * table                                     (❌)
+      | locationId | date | timeslot | taken |  (❌)
+    * populate as needed                        (❌)   
+
+comments:
+    * table                                     (❌)
+      | eventId | userId | date | time |
+    * user can add, remove, edit 
+    THEIR comments only                         (❌)
+
+rating:
+    * table
+      | eventId | rating |                      (❌)
+    
+    
+
+    
+
+
+
+
+User privileges and notes:
+0:  * create a university profile
+    * anything that other users can do
+
+1:  * host/create events
+    * assigned to one university and one or more RSOs

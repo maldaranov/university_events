@@ -6,10 +6,7 @@
     // LOG OUT
     if (isset($_GET['logout'])) {
         session_destroy();
-        unset($_SESSION['sessionId']);
-        unset($_SESSION['sessionUser']);
-        unset($_SESSION['sessionRole']);
-        unset($_SESSION['univName']);
+        session_unset();
         header("location: login.php");
     }
 

@@ -1,8 +1,8 @@
 <?php
     session_start();
     require_once 'includes/server.php';
-    require_once 'register-inc.php' // for logout functionality
 ?>
+
 <html>
     <head>
         <meta charset="UTF-8">
@@ -14,11 +14,11 @@
                 <ul>
                     <li><a href="index.php"> Home </a></li>
                     <!-- admins can create RSOs and events-->
-                    <?php if (isset($_SESSION['sessionId']) && ($_SESSION['sessionRole'] = 3)) { ?>
+                    <?php if (isset($_SESSION['sessionRole']) && (($_SESSION['sessionRole'] == 0) || ($_SESSION['sessionRole'] == 1))) { ?>
                         <li><a href="create_event.php"> Host Event </a></li>
                         <li><a href="create_rso.php"> Create RSO </a></li>
                     <?php } ?>
-                    <li class = "right"><a href="index.php?logout='1'"> Log Out </a></li>
+                    <li><a href="index.php?logout='1'"> Log Out </a></li>
                 </ul>
             </nav>
         </header>

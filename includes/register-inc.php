@@ -10,7 +10,7 @@
         $username = $_POST['username'];
         $password = $_POST['password'];
         $confirmPass = $_POST['confirmPassword'];
-        $roleId = 0;
+        $roleId = 2;
 
         // check for empty fields
         if (empty($firstname)) {
@@ -99,7 +99,7 @@
                         // * hash the password and bind it if you want it hashed
                         $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
                         // insert all the data from the registration form into the database
-                        mysqli_stmt_bind_param($stmt, "sssssi", $username, $password, $email, $firstname, $lastname, $roleId);
+                        mysqli_stmt_bind_param($stmt, "ssssssi", $firstname, $lastname, $univname, $email, $username, $password, $roleId);
                         mysqli_stmt_execute($stmt);
                         header("location: ../login.php?success=registered");
                         exit();
