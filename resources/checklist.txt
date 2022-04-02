@@ -1,0 +1,97 @@
+<<< Web features >>>
+
+    * Login/Logout functionality                (✅) Maxim
+        * save session variables                (✅) Maxim
+
+    * Register functionality                    (✅) Maxim   
+        * check if university with the given
+          @ domain exists                       (✅) Maxim 
+        * assign univId to the user based on
+          user's email @ tag                    (✅) Maxim
+
+
+    * List of RSO event requests                (❌)
+        * visible to superadmin                 (❌)
+        * aprove                                (❌)
+        * event creation                        (❌)
+
+    * Event feed                                (❌)
+        * list events                           (✅) Cameron 
+        * event searchbox                       (❌)
+        * resolve privacy                       (❌)
+          public - everyone
+          private - same university as user
+          RSO - same RSO as user
+
+        * separate RSO and public events        (❌)
+
+    * Create/host event                         (❌)
+        * create request if not RSO             (❌)
+        * time conflict check                   (✅)
+        * create location                       (❌)
+        * create event                          (❌)
+
+    * Event page                                (❌)
+        * event information                     (✅) Chanxay
+        * comment section                       (❌)
+            * create comment                    (❌)
+            * rate comment                      (❌)
+            * edit comment                      (❌)
+        * Bing or Google maps integration       (❌)
+
+    * Create RSO                                (❌)
+        * send request for creation             (❌)
+        * if there is four or more requests
+          create an RSO                         (❌)
+        * decide who is admin                   (❌)
+
+    * Create university profile                 (❌) Maxim
+    * Register for an event                     (❌)
+    * Social media integration
+      Share to Facebook/Google                  (❌)
+
+                
+<<< Database features >>>
+
+university                                      (✅) Maxim
+
+user:                                           (✅) Maxim
+    * concurrency (handled by default?)         (✅) Maxim
+    * roles                                     (✅) Maxim
+
+rso:                                            (✅) Maxim
+    * owned by one admin                        (✅) Maxim
+
+rso_members                                     (✅) Maxim
+TRIGGER: rso_members > 5 set RSO active         (❌) 
+
+location                                        (✅) Maxim
+
+event:                                          (✅) Maxim
+    * relate to one location                    (✅) Maxim
+    * relate to one university                  (✅) Maxim
+    * may relate to some RSO                    (✅) Maxim                
+
+public_event                                    (✅) Maxim
+
+private_event                                   (✅) Maxim
+    * knows host university                     (✅) Maxim
+
+public_event_request                            (✅) Maxim
+
+comments                                        (✅) Maxim
+
+rating:                                         (✅) Maxim
+TRIGGER: on update on rating, select all
+ratings for that event and calculate new
+rating                                          (❌) 
+
+    
+
+
+User privileges and notes:
+0:  * create a university profile
+    * all privileges in the scope of the assigned unviersity
+
+1:  * host/create events
+    * assigned to one university and one or more RSOs
