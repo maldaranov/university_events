@@ -6,14 +6,6 @@
     <h1> Create Event </h1>
 
     <form action="includes/create_event-inc.php" method="post">
-<<<<<<< HEAD
-            <input type="text" size=30 name="eventName" placeholder="name">
-            <input type="text" name="type" placeholder="type">
-            <textarea name="description" rows=8 cols=30 wrap=virtual></textarea>
-            <input type="text" name="category" placeholder="category">
-            <input type="datetime" name="datetime" placeholder="date and time">
-            <button type="submit" name="submit">Create event</button>
-=======
             <!-- event name input -->
             <label class="required" for="eName"> Title </label>
             <input id="eName" type="text" required size=30 name="eventName" placeholder="Title">
@@ -95,7 +87,6 @@
             <label for="eDescription"> Description: </label>
             <textarea id="eDescription" name="eventDescription" rows=10 cols=27 maxlength=500 placeholder="maximum length is 500 characters"></textarea>
             <p><button type="submit" name="submit">HOST</button></p>
->>>>>>> 949025c40e6a8792168a01f816e37d8c3be9a93e
     </form>
 </div>
 
