@@ -38,16 +38,17 @@
     while($row = mysqli_fetch_object($result))
     {
 ?>
-<div class="comment" style='text-align:left'>
-    <p align=center>By: <?php echo $row->comment_userName; ?></p>
-    <p align=center>
-    <?php echo $row->comment_msg; ?>
-    </p>
-</div>
+    <div class="comment" style='text-align:left'>
+        <p align=center>By: <?php echo $row->comment_userName; ?></p>
+        <p align=center>
+        <?php echo $row->comment_msg; ?>
+        </p>
+    </div>
 <?php
     }
 ?>
 
+// Comment box
 <h3 style="text-align:center">Leave a comment:</h3>
 <form action="insertcomment.php" method="post">
 <input type="hidden" name="eventid" value="<?php echo $_GET['eventId']; ?>"/>
