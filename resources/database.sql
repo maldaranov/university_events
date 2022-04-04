@@ -122,11 +122,17 @@ CREATE TABLE event_comment (
     commentId int AUTO_INCREMENT,
     comment_eventId int NOT NULL,
     comment_userId int NOT NULL,
+    comment_userName varchar(40) NOT NULL,
+    comment_msg varchar(500) NOT NULL,
     comment_datetime timestamp NOT NULL,
     PRIMARY KEY (commentId),
     FOREIGN KEY (comment_eventId) REFERENCES event (eventId),
     FOREIGN KEY (comment_userId) REFERENCES user (userId)
 );
+
+INSERT INTO event_comment VALUES (NULL, 2, 1, 'John Smith', 'Test comment', '11:11:11');
+INSERT INTO event_comment VALUES (NULL, 2, 2, 'Chanxay Bounheuangviseth', 'This aint a database class', '11:11:12');
+
 
     /* event_rating TABLE*/ 
     /* NOTE: this is just 1 rating instance from 1 user for 1 event */
