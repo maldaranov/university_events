@@ -15,7 +15,22 @@
         header("location: login.php?error=notloggedin");
     } else {
     // EVENTS LIST
-        $query = "SELECT * from event";
+    $currUserId = $_SESSION['user_id'];
+        $query ="SELECT DISTINCT event.eventId, event.eventName, event.eventCategory, event.eventDescription, event.eventDate, event.eventTime, event.eventLocationId, location.locationName
+        FROM rso_members
+        LEFT JOIN event
+        ON rso_members.rsoId = event.eventRsoId
+        LEFT JOIN user
+        ON rso_members.userId = user.userId
+        LEFT JOIN location
+        ON event.eventLocationId = location.locationId
+        WHERE
+        user.userId = $currUserId AND event.eventPrivacy = 2 AND rso_members.userId = $currUserId AND user.univId = event.eventUnivId
+        OR
+        event.eventPrivacy = 0 
+        OR 
+        event.eventPrivacy = 1 AND user.univId = event.eventUnivId
+        ";
         $result = mysqli_query($db, $query);
         $rows = mysqli_num_rows($result);
         if ($rows > 0) {

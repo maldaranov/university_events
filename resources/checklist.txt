@@ -15,13 +15,13 @@
         * aprove                                (❌)
         * event creation                        (❌)
 
-    * Event feed                                (❌)
+    * Event feed                                (✅) Cameron 
         * list events                           (✅) Cameron 
-        * event searchbox                       (❌)
-        * resolve privacy                       (❌)
-          public - everyone
-          private - same university as user
-          RSO - same RSO as user
+        * event searchbox                       (❌) 
+        * resolve privacy                       (✅) Cameron 
+          public - everyone                     (✅) Cameron 
+          private - same university as user     (✅) Cameron 
+          RSO - same RSO as user                (✅) Cameron 
 
         * separate RSO and public events        (❌)
 
@@ -90,8 +90,8 @@ rating                                          (❌)
 
 
 User privileges and notes:
-0:  * create a university profile
+0:  * create a university profile // superadmin
     * all privileges in the scope of the assigned unviersity
 
-1:  * host/create events
+1:  * host/create events // admin
     * assigned to one university and one or more RSOs
