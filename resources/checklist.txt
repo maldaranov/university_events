@@ -17,7 +17,7 @@
 
     * Event feed                                (✅) Cameron 
         * list events                           (✅) Cameron 
-        * event searchbox                       (❌) 
+        * event searchbox                       (✅) Cameron
         * resolve privacy                       (✅) Cameron 
           public - everyone                     (✅) Cameron 
           private - same university as user     (✅) Cameron 
