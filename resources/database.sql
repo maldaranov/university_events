@@ -101,7 +101,8 @@ CREATE TABLE event (
     UNIQUE (eventDate, eventTime, eventLocationId)
 );
 
-INSERT INTO event VALUES (NULL, 'public1', 'social', 'description', '2022-4-1', 6, 1, '1111111111', 'public1@ucf.edu', 1, NULL, 0);
+INSERT INTO event VALUES (NULL, 'public1', 'social', 'description', '2022-4-1', 6, 1, '1111111111', 'public1@ucf.edu', 1, 0, 0);
+INSERT INTO event VALUES (NULL, 'ros_notowned1', 'social', 'description', '2022-4-1', 7, 1, '1111111111', 'public1@ucf.edu', 1, 1, 0);
 
     /* public_event_request TABLE */
 DROP TABLE IF EXISTS public_event_request;

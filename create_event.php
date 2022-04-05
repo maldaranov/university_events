@@ -41,22 +41,22 @@
             <label class="required" for="eTime"> Time slot </label>
             <select id="eTime" name="eventTime">
                 <option value=""> Choose a time slot </option>
-                <option value="1"> 6:00 a.m - 7:00 a.m </option>
-                <option value="2"> 7:00 a.m - 8:00 a.m </option>
-                <option value="3"> 8:00 a.m - 9:00 a.m </option>
-                <option value="4"> 9:00 a.m - 10:00 a.m  </option>
-                <option value="5"> 10:00 a.m - 11:00 a.m </option>
-                <option value="6"> 11:00 a.m - 12:00 p.m </option>
-                <option value="7"> 12:00 p.m - 1:00 p.m </option>
-                <option value="8"> 1:00 p.m- 2:00 p.m </option>
-                <option value="9"> 2:00 p.m  - 3:00 p.m </option>
-                <option value="10"> 3:00 p.m - 4:00 p.m </option>
-                <option value="11"> 4:00 p.m- 5:00 p.m </option>
-                <option value="12"> 5:00 p.m - 6:00 p.m </option>
-                <option value="12"> 6:00 p.m - 7:00 p.m </option>
-                <option value="12"> 7:00 p.m - 8:00 p.m </option>
-                <option value="12"> 9:00 p.m - 10:00 p.m </option>
-                <option value="12"> 10:00 p.m - 11:00 p.m </option>
+                <option value="6"> 6:00 a.m - 7:00 a.m </option>
+                <option value="7"> 7:00 a.m - 8:00 a.m </option>
+                <option value="8"> 8:00 a.m - 9:00 a.m </option>
+                <option value="9"> 9:00 a.m - 10:00 a.m  </option>
+                <option value="10"> 10:00 a.m - 11:00 a.m </option>
+                <option value="11"> 11:00 a.m - 12:00 p.m </option>
+                <option value="12"> 12:00 p.m - 1:00 p.m </option>
+                <option value="13"> 1:00 p.m- 2:00 p.m </option>
+                <option value="14"> 2:00 p.m  - 3:00 p.m </option>
+                <option value="15"> 3:00 p.m - 4:00 p.m </option>
+                <option value="16"> 4:00 p.m- 5:00 p.m </option>
+                <option value="17"> 5:00 p.m - 6:00 p.m </option>
+                <option value="18"> 6:00 p.m - 7:00 p.m </option>
+                <option value="19"> 7:00 p.m - 8:00 p.m </option>
+                <option value="20"> 9:00 p.m - 10:00 p.m </option>
+                <option value="21"> 10:00 p.m - 11:00 p.m </option>
             </select>
 
             <!-- event contact phone input -->
@@ -64,7 +64,7 @@
             <input id="ePhone" type="tel" name="eventPhone" placeholder="Phone Number">
 
             <!-- event email input -->
-            <label class="required" for="eDate"> Contact Email </label>
+            <label class="required" for="eEmail"> Contact Email </label>
             <input id="eEmail" type="email" name="eventEmail" placeholder="Email">
 
             <!-- event privacy input -->
@@ -76,7 +76,7 @@
             </select>   
             
             <!-- event rso id input -->
-            <label for="eRsoId"> RSO Name </label>
+            <label for="eRsoId"> (if RSO privacy chosen) </label>
             <input id="eRsoId" type="text" name="eventRsoId" placeholder="RSO Name">            
 
             <!-- event location input-->
