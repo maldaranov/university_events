@@ -8,20 +8,11 @@
 </form>
 
 <?php
-    // LOG OUT
-    if (isset($_GET['logout'])) {
-        session_destroy();
-        session_unset();
-        header("location: login.php");
-    }
 
-    // CHECK: logged in
-    if (!isset($_SESSION['user_id'])) {
-        header("location: login.php?error=notloggedin");
-    } else {
-        // EVENTS LIST
-        $currUserId = $_SESSION['user_id'];
-        $query ="SELECT DISTINCT event.eventId, event.eventName, event.eventCategory, event.eventDescription, event.eventDate, event.eventTime, event.eventLocationId, location.locationName
+    if (isset($_POST['submit-search'])) {
+                $currUserId = $_SESSION['user_id'];
+        $search = mysqli_real_escape_string($db, $_POST['search']);
+        $sql = "SELECT DISTINCT event.eventId, event.eventName, event.eventCategory, event.eventDescription, event.eventDate, event.eventTime, event.eventLocationId, location.locationName
         FROM rso_members
         LEFT JOIN event
         ON rso_members.rsoId = event.eventRsoId
@@ -29,15 +20,17 @@
         ON rso_members.userId = user.userId
         LEFT JOIN location
         ON event.eventLocationId = location.locationId
-        WHERE
-        user.userId = $currUserId AND event.eventPrivacy = 2 AND rso_members.userId = $currUserId AND user.univId = event.eventUnivId
+        WHERE ((user.userId = $currUserId AND event.eventPrivacy = 2 AND rso_members.userId = $currUserId AND user.univId = event.eventUnivId
         OR
         event.eventPrivacy = 0 
         OR 
-        event.eventPrivacy = 1 AND user.univId = event.eventUnivId
+        event.eventPrivacy = 1 AND user.univId = event.eventUnivId)
+        AND
+        (eventName LIKE '%$search%' OR eventCategory LIKE '%$search%' OR eventDescription LIKE '%$search%'))
         ";
-        $result = mysqli_query($db, $query);
+        $result = mysqli_query($db, $sql);
         $rows = mysqli_num_rows($result);
+
         if ($rows > 0) {
             // TABLE: column names
             $display_block = "
@@ -80,12 +73,12 @@
 
             // TABLE: end
             $display_block.= "</table>";
-            } else {
-                $display_block = "<p><em>No events to display.</em><p>";
-            }
+        } else {
+            $display_block = "<p><em>No events to display.</em><p>";
+        }
     }
-
 ?>
+
 
 <html>
     <head>
@@ -100,4 +93,3 @@
 <?php
     require_once 'includes/footer.php';
 ?>
-
