@@ -120,11 +120,11 @@ CREATE TABLE public_event_request (
 DROP TABLE IF EXISTS event_comment;
 CREATE TABLE event_comment (
     commentId int AUTO_INCREMENT,
-    comment_eventId int NOT NULL,
-    comment_userId int NOT NULL,
-    comment_userName varchar(40) NOT NULL,
-    comment_msg varchar(500) NOT NULL,
-    comment_datetime timestamp NOT NULL,
+    comment_eventId int,
+    comment_userId int ,
+    comment_userName varchar(40) ,
+    comment_msg text ,
+    comment_datetime datetime ,
     PRIMARY KEY (commentId),
     FOREIGN KEY (comment_eventId) REFERENCES event (eventId),
     FOREIGN KEY (comment_userId) REFERENCES user (userId)

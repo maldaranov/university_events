@@ -1,5 +1,6 @@
 <?php
     require_once 'includes/header.php';
+    include 'includes/event_page-inc.php';
 ?>
 
 <?php
@@ -38,24 +39,25 @@
     while($row = mysqli_fetch_object($result))
     {
 ?>
-    <div class="comment" style='text-align:left'>
+    <div class="comment-box" style='text-align:left'>
+    <link rel="stylesheet" type="text/css" href="style.css">
         <p align=center>By: <?php echo $row->comment_userName; ?></p>
-        <p align=center>
-        <?php echo $row->comment_msg; ?>
-        </p>
+        <p align=center><?php echo $row->comment_msg; ?></p>
     </div>
 <?php
     }
 ?>
 
-// Comment box
+<!-- Comment text box: Need to change hardcoded values to variables -->
 <h3 style="text-align:center">Leave a comment:</h3>
-<form action="insertcomment.php" method="post">
-<input type="hidden" name="eventid" value="<?php echo $_GET['eventId']; ?>"/>
-<textarea name="comment" rows="10" cols="100"></textarea>
-<input type="submit" />
-</form>
-
 <?php
-    require_once 'includes/footer.php';
+echo "<form action='".setComments($db)."' method='post'>
+    <input type='hidden' name='comment_eventId' value='2'>
+    <input type='hidden' name='comment_userId' value='2'>
+    <input type='hidden' name='comment_userName' value='Anonymous'>
+    <input type='hidden' name='comment_datetime' value='".date('Y-m-d H:i:s')."'>
+    <textarea name='comment_msg' rows='8' cols='100'></textarea>
+    <p align=center><button type='submit' name='commentSubmit'>Comment</button></p>
+</form>";
+
 ?>
