@@ -106,4 +106,20 @@ button {
     background-color: #ba9b37;
     color: #ffffff;
 }
+
+.comment-box {
+    width: 300px;
+    padding: 20px;
+    margin-bottom: 4px;
+    background-color: #ddd;
+    border-radius: 4px;
+}
+
+.comment-box p {
+    font-family: arial;
+    font-size: 14px;
+    line-height: 16px;
+    color: #282828;
+    font-weight: 100;
+}
     

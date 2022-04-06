@@ -34,7 +34,7 @@
     * Event page                                (❌)
         * event information                     (✅) Chanxay
         * comment section                       (❌)
-            * create comment                    (❌)
+            * create comment                    (✅) Chanxay
             * rate comment                      (❌)
             * edit comment                      (❌)
         * Bing or Google maps integration       (❌)
