@@ -119,19 +119,18 @@ CREATE TABLE public_event_request (
     /* event_comment TABLE */
 DROP TABLE IF EXISTS event_comment;
 CREATE TABLE event_comment (
-    commentId int AUTO_INCREMENT not null,
+    commentId int AUTO_INCREMENT,
     comment_eventId int not null,
-    comment_userId int not null,
     comment_userName varchar(40) not null,
     comment_msg text not null,
     comment_datetime datetime not null,
     PRIMARY KEY (commentId),
     FOREIGN KEY (comment_eventId) REFERENCES event (eventId),
-    FOREIGN KEY (comment_userId) REFERENCES user (userId)
+    FOREIGN KEY (comment_userName) REFERENCES user (username)
 );
 
-INSERT INTO event_comment VALUES (NULL, 2, 1, 'John Smith', 'Test comment', '11:11:11');
-INSERT INTO event_comment VALUES (NULL, 2, 2, 'Chanxay Bounheuangviseth', 'This aint a database class', '11:11:12');
+INSERT INTO event_comment VALUES (NULL, 2, 'John Smith', 'Test comment', '11:11:11');
+INSERT INTO event_comment VALUES (NULL, 2, 'Chanxay Bounheuangviseth', 'This aint a database class', '11:11:12');
 
 
     /* event_rating TABLE*/ 

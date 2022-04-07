@@ -52,9 +52,8 @@
 <h3 style="text-align:center">Leave a comment:</h3>
 <?php
 echo "<form action='".setComments($db)."' method='post'>
-    <input type='hidden' name='comment_eventId' value='2'>
-    <input type='hidden' name='comment_userId' value='2'>
-    <input type='hidden' name='comment_userName' value='Anonymous'>
+    <input type='hidden' name='comment_eventId' value='".$event_id."'>
+    <input type='hidden' name='comment_userName' value='".$_SESSION['user_fullname']."'>
     <input type='hidden' name='comment_datetime' value='".date('Y-m-d H:i:s')."'>
     <textarea name='comment_msg' rows='8' cols='100'></textarea>
     <p align=center><button type='submit' name='commentSubmit'>Comment</button></p>
