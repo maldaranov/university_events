@@ -3,6 +3,9 @@
     include 'includes/event_page-inc.php';
 ?>
 
+<meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" href="style_comment.css">
+
 <?php
     $eid = $_GET['eventId'];
     $get_event = "SELECT * FROM event WHERE eventId = $eid";
@@ -30,33 +33,17 @@
      print $display_block;
 ?>
 
-<h2 style="text-align:center">Comments</h2>
-<?php
-    $eid = $_GET['eventId'];
-    $get_comment = "SELECT * FROM event_comment WHERE comment_eventId = $eid";
-    $result = mysqli_query($db, $get_comment);
-
-    while($row = mysqli_fetch_object($result))
-    {
-?>
-    <div class="comment-box" style='text-align:left'>
-    <link rel="stylesheet" type="text/css" href="style.css">
-        <p align=center>By: <?php echo $row->comment_userName; ?></p>
-        <p align=center><?php echo $row->comment_msg; ?></p>
-    </div>
-<?php
-    }
-?>
-
-<!-- Comment text box: Need to change hardcoded values to variables -->
+<!-- Comment text box -->
 <h3 style="text-align:center">Leave a comment:</h3>
 <?php
 echo "<form action='".setComments($db)."' method='post'>
     <input type='hidden' name='comment_eventId' value='".$event_id."'>
-    <input type='hidden' name='comment_userName' value='".$_SESSION['user_fullname']."'>
+    <input type='hidden' name='comment_userName' value='".$_SESSION['user_username']."'>
     <input type='hidden' name='comment_datetime' value='".date('Y-m-d H:i:s')."'>
     <textarea name='comment_msg' rows='8' cols='100'></textarea>
     <p align=center><button type='submit' name='commentSubmit'>Comment</button></p>
 </form>";
+
+getComments($db);
 
 ?>
