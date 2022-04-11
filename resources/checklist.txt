@@ -45,7 +45,9 @@
           create an RSO                         (❌)
         * decide who is admin                   (❌)
 
-    * Create university profile                 (❌) Maxim
+    * Create university profile                 (✅) Cameron 
+    * Display university list                   (✅) Cameron
+    * Display university profile upon clicking  (❌) Cameron
     * Register for an event                     (❌)
     * Social media integration
       Share to Facebook/Google                  (❌)

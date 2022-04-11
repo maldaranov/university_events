@@ -84,7 +84,6 @@
                 $display_block = "<p><em>No events to display.</em><p>";
             }
     }
-
 ?>
 
 <html>

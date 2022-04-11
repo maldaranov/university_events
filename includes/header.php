@@ -21,7 +21,10 @@
                     <?php if (isset($_SESSION['user_roleid']) && ($_SESSION['user_roleid'] == 0)) { ?>
                         <li><a href="create_university_profile.php"> Create University </a></li>
                     <?php } ?>
-                    <li><a href="index.php?logout='1'"> Log Out </a></li>
+                    <?php if (isset($_SESSION['user_id'])) { ?>
+                        <li><a href="display_university_profile.php"> Universities </a></li>
+                        <li><a href="index.php?logout='1'"> Log Out </a></li>
+                    <?php } ?>
                 </ul>
             </nav>
         </header>
