@@ -18,6 +18,9 @@
                         <li><a href="create_event.php"> Host Event </a></li>
                         <li><a href="create_rso.php"> Create RSO </a></li>
                     <?php } ?>
+                    <?php if (isset($_SESSION['user_roleid']) && ($_SESSION['user_roleid'] == 0)) { ?>
+                        <li><a href="create_university_profile.php"> Create University </a></li>
+                    <?php } ?>
                     <li><a href="index.php?logout='1'"> Log Out </a></li>
                 </ul>
             </nav>

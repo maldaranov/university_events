@@ -1,5 +1,5 @@
 </body>
     <footer>
-        <p> This is my footer of the login and register form. </p>
+        <p> 2022 Database Project </p>
     </footer>
 </html>
