@@ -47,3 +47,8 @@ echo "<form action='".setComments($db)."' method='post'>
 getComments($db);
 
 ?>
+
+<?php
+    require_once 'includes/footer.php';
+?>
+
