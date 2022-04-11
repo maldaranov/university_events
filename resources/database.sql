@@ -129,9 +129,6 @@ CREATE TABLE event_comment (
     FOREIGN KEY (comment_userName) REFERENCES user (username)
 );
 
-INSERT INTO event_comment VALUES (NULL, 2, 'John Smith', 'Test comment', '11:11:11');
-INSERT INTO event_comment VALUES (NULL, 2, 'Chanxay Bounheuangviseth', 'This aint a database class', '11:11:12');
-
 
     /* event_rating TABLE*/ 
     /* NOTE: this is just 1 rating instance from 1 user for 1 event */

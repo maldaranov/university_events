@@ -31,16 +31,22 @@ function getComments($db)
             echo $row->comment_userName."<br>";
             echo $row->comment_datetime."<br>";
             echo nl2br($row->comment_msg);
-        echo "</p>
-            <form class='edit-form' method='post' action='edit_comment.php'>
+        echo "</p>";
+        if (isset($_SESSION['user_username']))
+        {
+            if ($_SESSION['user_username'] == $row->comment_userName)
+            {
+                echo "<form class='edit-form' method='post' action='edit_comment.php'>
                 <input type='hidden' name='commentId' value='".$row->commentId."'>
                 <input type='hidden' name='comment_eventId' value='".$row->comment_eventId."'>
                 <input type='hidden' name='comment_userName' value='".$row->comment_userName."'>
                 <input type='hidden' name='comment_datetime' value='".$row->comment_datetime."'>
                 <input type='hidden' name='comment_msg' value='".$row->comment_msg."'>
                 <button>Edit</button>
-            </form>
-        </div>";
+                </form>";
+            }
+        }
+        echo "</div>";
     }
 }
 
