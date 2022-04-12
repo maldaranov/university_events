@@ -25,6 +25,9 @@
 
         * separate RSO and public events        (❌)
 
+    * List RSOs                                 (✅) Cameron 
+        * join rsos                             (✅) Cameron 
+
     * Create/host event                         (❌)
         * create request if not RSO             (❌)
         * time conflict check                   (✅)
