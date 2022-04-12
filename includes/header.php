@@ -22,6 +22,7 @@
                         <li><a href="create_university_profile.php"> Create University </a></li>
                     <?php } ?>
                     <?php if (isset($_SESSION['user_id'])) { ?>
+                        <li><a href="display_rsos.php"> RSOs </a></li>
                         <li><a href="display_university_profile.php"> Universities </a></li>
                         <li><a href="index.php?logout='1'"> Log Out </a></li>
                     <?php } ?>

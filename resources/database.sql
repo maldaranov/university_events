@@ -50,10 +50,12 @@ CREATE TABLE rso (
     rso_active boolean NOT NULL,
     rsoName varchar(255) NOT NULL UNIQUE,
     ownerId int NOT NULL,
+    univId int NOT NULL,
     PRIMARY KEY (rsoId),
-    FOREIGN KEY (ownerId) REFERENCES admin (adminId)
+    FOREIGN KEY (ownerId) REFERENCES user (userId),
+    FOREIGN KEY (univId) REFERENCES university (univId)
 );
-INSERT INTO rso VALUES (NULL, true, 'RSO_1', 1);
+INSERT INTO rso VALUES (NULL, true, 'RSO_1', 1, 1);
 
     /* rso_members */
 DROP TABLE IF EXISTS rso_members;
@@ -108,6 +110,9 @@ INSERT INTO event VALUES (NULL, 'public1', 'social', 'description', '2022-4-1', 
 INSERT INTO event VALUES (NULL, 'public2', 'social', 'description', '2022-4-2', 6, 1, '1111111111', 'public2@ucf.edu', 1, 0, 1);
 INSERT INTO event VALUES (NULL, 'private1', 'social', 'description', '2022-4-3', 6, 1, '1111111111', 'private1@ucf.edu', 2, 2, 1);
 INSERT INTO event VALUES (NULL, 'private2', 'social', 'description', '2022-4-4', 6, 1, '1111111111', 'private2@ucf.edu', 3, 2, 1);
+
+INSERT INTO event VALUES (NULL, 'Meeting 1', 'Career/Jobs', 'Business Meeting', '2022-04-12', 7, 1, '123456789', 'meeting@mail.com', 1, 0, NULL); 
+INSERT INTO location VALUES (NULL, 'UCF Downtown', '500 W Livingston St, Orlando, FL 32801', 28.54654355, -81.38628953);
 
     /* public_event_request TABLE */
 DROP TABLE IF EXISTS public_event_request;
