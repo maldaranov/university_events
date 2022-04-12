@@ -12,7 +12,7 @@
     if (isset($_POST['submit-search'])) {
                 $currUserId = $_SESSION['user_id'];
         $search = mysqli_real_escape_string($db, $_POST['search']);
-        $sql = "SELECT DISTINCT event.eventId, event.eventName, event.eventCategory, event.eventDescription, event.eventDate, event.eventTime, event.eventLocationId, location.locationName
+        $sql = "SELECT DISTINCT event.eventId, event.eventName, event.eventCategory, event.eventDescription, event.eventDate, event.eventTime, event.eventLocationId, event.eventRsoId, location.locationAddress
         FROM rso_members
         LEFT JOIN event
         ON rso_members.rsoId = event.eventRsoId
@@ -21,12 +21,19 @@
         LEFT JOIN location
         ON event.eventLocationId = location.locationId
         WHERE ((user.userId = $currUserId AND event.eventPrivacy = 2 AND rso_members.userId = $currUserId AND user.univId = event.eventUnivId
-        OR
-        event.eventPrivacy = 0 
         OR 
         event.eventPrivacy = 1 AND user.univId = event.eventUnivId)
         AND
         (eventName LIKE '%$search%' OR eventCategory LIKE '%$search%' OR eventDescription LIKE '%$search%'))
+        UNION 
+        SELECT DISTINCT event.eventId, event.eventName, event.eventCategory, event.eventDescription, event.eventDate, event.eventTime, event.eventLocationId, event.eventRsoId, location.locationAddress
+        FROM event
+        LEFT JOIN location
+        ON event.eventLocationId = location.locationId
+        WHERE
+        event.eventPrivacy = 0
+        AND
+        (eventName LIKE '%$search%' OR eventCategory LIKE '%$search%' OR eventDescription LIKE '%$search%')
         ";
         $result = mysqli_query($db, $sql);
         $rows = mysqli_num_rows($result);
@@ -51,7 +58,7 @@
                 $event_description = $event_info['eventDescription'];
                 $event_date = $event_info['eventDate'];
                 $event_time = $event_info['eventTime'];
-                $event_locationId = $event_info['eventLocationId'];
+                $event_location = $event_info['locationAddress'];
                 // $event_phone = $event_info['eventContactPhone'];
                 // $event_email = $event_info['eventContactEmail'];
                 // $event_univId = $event_info['eventUnivId'];
@@ -67,7 +74,7 @@
                 <td><strong>$event_description</strong></a><br>
                 <td><strong>$event_date</strong></a><br>
                 <td><strong>$event_time</strong></a><br>
-                <td><strong>$event_locationId</strong></a><br>
+                <td><strong>$event_location</strong></a><br>
                 </tr>";         
             }
 
