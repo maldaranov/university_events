@@ -51,7 +51,7 @@
     * Create university profile                 (✅) Cameron 
     * Display university list                   (✅) Cameron
     * Display university profile upon clicking  (✅) Cameron
-    * Register for an event                     (❌)
+    * Register for an event                     (✅) Cameron
     * Social media integration
       Share to Facebook/Google                  (❌)
 

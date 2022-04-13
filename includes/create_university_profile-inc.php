@@ -43,7 +43,7 @@
             header("location: ../create_university_profile.php?error=emptyfield&univPicture=".$univ_picture);
             exit();
 
-        // CREATING THE PROFILE
+        // Create University Profile
         } else {
             // CHECK: compare univ Name
             $query = "SELECT * FROM university WHERE univName = ?";

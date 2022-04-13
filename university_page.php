@@ -3,6 +3,7 @@
 ?>
 
 <?php
+    // get university that user selected
     $uid = $_GET['univId'];
     $get_profile = "SELECT * FROM university WHERE univId = $uid";
     $result = mysqli_query($db, $get_profile);

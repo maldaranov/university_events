@@ -78,6 +78,7 @@
             }
     }
 
+    // get the name of the University that the user is part of 
     $query3 ="SELECT university.univName
     FROM university
     LEFT JOIN user
