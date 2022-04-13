@@ -12,10 +12,15 @@
     $result = mysqli_query($db, $get_event);
     $event_info = mysqli_fetch_array($result);
 
+    // Grabbing address for map iframe
+    $query = "SELECT locationAddress FROM event LEFT JOIN location ON event.eventLocationId = location.locationId";
+    $result = mysqli_query($db, $query);
+    $address_info = mysqli_fetch_array($result);
+    $address = $address_info['locationAddress'];
+
     // FETCH: individual event
     $event_id = $event_info['eventId'];
     $event_name= $event_info['eventName'];
-    // $event_location = $event_info['eventLocation'];
     $event_category = $event_info['eventCategory'];
     $event_date = $event_info['eventDate'];
     $event_time = $event_info['eventTime'];
@@ -32,6 +37,10 @@
     ";
      print $display_block;
 ?>
+
+<div>
+<iframe width="50%" height="300" src="https://maps.google.com/maps?q=<?php echo $address; ?>&output=embed"></iframe>
+</div>
 
 <!-- Comment text box -->
 <h3 style="text-align:center">Leave a comment:</h3>
