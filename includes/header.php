@@ -20,6 +20,7 @@
                     <?php } ?>
                     <?php if (isset($_SESSION['user_roleid']) && ($_SESSION['user_roleid'] == 0)) { ?>
                         <li><a href="create_university_profile.php"> Create University </a></li>
+                        <li><a href="display_public_requests.php"> Approve Events </a></li>
                     <?php } ?>
                     <?php if (isset($_SESSION['user_id'])) { ?>
                         <li><a href="display_rsos.php"> RSOs </a></li>

@@ -2,7 +2,7 @@
     if (isset($_POST['submit'])) {
         // CONNECT
         require 'server.php';
-    } elseif ($_SESSION['sessionRole'] == 0) {
+    } elseif ($_SESSION['sessionRole'] != 0) {
         // CHECK: users who are not superadmins can't create university profiles
         header("location: ../create_university_profile.php?error=invalidrole=".$_SESSION['sessionRole']);
         exit();
