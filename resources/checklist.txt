@@ -10,7 +10,7 @@
           user's email @ tag                    (✅) Maxim
 
 
-    * List of RSO event requests                (❌)
+    * List of Public event requests             (❌)
         * visible to superadmin                 (❌)
         * aprove                                (❌)
         * event creation                        (❌)

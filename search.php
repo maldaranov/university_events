@@ -8,11 +8,11 @@
 </form>
 
 <?php
-
+    // Display events that follow same constraints but are like the search 
     if (isset($_POST['submit-search'])) {
                 $currUserId = $_SESSION['user_id'];
         $search = mysqli_real_escape_string($db, $_POST['search']);
-        $sql = "SELECT DISTINCT event.eventId, event.eventName, event.eventCategory, event.eventDescription, event.eventDate, event.eventTime, event.eventLocationId, event.eventRsoId, location.locationAddress
+        $sql = "SELECT DISTINCT event.eventId, event.eventName, event.eventCategory, event.eventDescription, event.eventDate, event.eventTime, event.eventLocationId, event.eventRsoId, event.eventContactPhone, event.eventContactEmail, location.locationAddress
         FROM rso_members
         LEFT JOIN event
         ON rso_members.rsoId = event.eventRsoId
@@ -26,7 +26,7 @@
         AND
         (eventName LIKE '%$search%' OR eventCategory LIKE '%$search%' OR eventDescription LIKE '%$search%'))
         UNION 
-        SELECT DISTINCT event.eventId, event.eventName, event.eventCategory, event.eventDescription, event.eventDate, event.eventTime, event.eventLocationId, event.eventRsoId, location.locationAddress
+        SELECT DISTINCT event.eventId, event.eventName, event.eventCategory, event.eventDescription, event.eventDate, event.eventTime, event.eventLocationId, event.eventRsoId, event.eventContactPhone, event.eventContactEmail, location.locationAddress
         FROM event
         LEFT JOIN location
         ON event.eventLocationId = location.locationId
@@ -48,6 +48,8 @@
             <th>Date</th>
             <th>Time</th>
             <th>Location</th>
+            <th>Contact Phone Number</th>
+            <th>Contact Email</th>
             </tr>";
 
             while($event_info = mysqli_fetch_array($result)) {
@@ -59,11 +61,8 @@
                 $event_date = $event_info['eventDate'];
                 $event_time = $event_info['eventTime'];
                 $event_location = $event_info['locationAddress'];
-                // $event_phone = $event_info['eventContactPhone'];
-                // $event_email = $event_info['eventContactEmail'];
-                // $event_univId = $event_info['eventUnivId'];
-                // $event_privacy = $event_info['eventPrivacy'];
-                // $event_rosId = $event_info['eventRsoId'];
+                $event_phone = $event_info['eventContactPhone'];
+                $event_email = $event_info['eventContactEmail'];
 
                 // TABLE: fill the table with events, click sends user to an event page
                 $display_block .= "
@@ -75,6 +74,8 @@
                 <td><strong>$event_date</strong></a><br>
                 <td><strong>$event_time</strong></a><br>
                 <td><strong>$event_location</strong></a><br>
+                <td><strong>$event_phone</strong></a><br>
+                <td><strong>$event_email</strong></a><br>
                 </tr>";         
             }
 
