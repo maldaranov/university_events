@@ -8,11 +8,19 @@ DROP TABLE IF EXISTS university;
 CREATE TABLE university (
 	univId int AUTO_INCREMENT,
     univName varchar(255) NOT NULL UNIQUE,
+<<<<<<< HEAD
     univLocation varchar(255) NOT NULL UNIQUE,
     univDescription varchar(255) NOT NULL,
     univNumStudents int NOT NULL,
     univTag varchar(255) NOT NULL UNIQUE,
     univPicture varchar(64000), /* varchar(65535) is max, 65535-4(255)-4(2)=64507 */
+=======
+    univLocation varchar(255) NOT NULL,
+    univDescription varchar(255) NOT NULL,
+    univNumStudents int NOT NULL,
+    univTag varchar(255) NOT NULL UNIQUE,
+    univPicture varchar(64000), /* varchar(65535) is max, 65535-255-255=65014 */
+>>>>>>> b4f12fa00bcd3e01f4a5ed10e6779398d3a53d11
     PRIMARY KEY (univId)
 );
 INSERT INTO university VALUES (NULL, 'University of Central Florida', 'Orlando, FL', 'The best university in Florida', 70406, '@knights.ucf.edu', 'https://www.google.com/url?sa=i&url=https%3A%2F%2Ftwitter.com%2Fucf&psig=AOvVaw2Oxof7KR44x3kMWvx4K6gD&ust=1648864244888000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCJinmY7g8fYCFQAAAAAdAAAAABAG');
@@ -63,6 +71,7 @@ CREATE TABLE rso (
     ownerId int NOT NULL,
     univId int NOT NULL,
     PRIMARY KEY (rsoId),
+<<<<<<< HEAD
     FOREIGN KEY (ownerId) REFERENCES admin (userId),
     FOREIGN KEY (univId) REFERENCES university (univId)
 );
@@ -71,6 +80,12 @@ CREATE TABLE rso (
     INSERT INTO rso VALUES (NULL, true, 'Art', 8, 1);
     INSERT INTO rso VALUES (NULL, false, 'NFT Collectors', 5, 1);
     INSERT INTO rso VALUES (NULL, false, 'Cybersecurity', 7, 1);
+=======
+    FOREIGN KEY (ownerId) REFERENCES user (userId),
+    FOREIGN KEY (univId) REFERENCES university (univId)
+);
+INSERT INTO rso VALUES (NULL, true, 'RSO_1', 1, 1);
+>>>>>>> b4f12fa00bcd3e01f4a5ed10e6779398d3a53d11
 
     /* rso_members */
 DROP TABLE IF EXISTS rso_members;
@@ -147,6 +162,7 @@ CREATE TABLE event (
     INSERT INTO event VALUES (NULL, 'Spring Formal', 'Social Event', 'Connect with your peers while you dance!', '2022-7-4', 7, 3, '3310616985 ', 'sga@knights.ucf.edu', 1, 1, NULL);
     INSERT INTO event VALUES (NULL, 'Gardening Introduction', 'Workshop/Conference', 'Learn how to start your first garden.', '2022-8-4', 7, 1, '1029384756 ', 'gardening@knights.ucf.edu', 1, 1, NULL);
 
+<<<<<<< HEAD
     INSERT INTO event VALUES (NULL, 'Graduation', 'Social Event', 'Congratulations, graduates of 2022!', '2022-4-3', 6, 2, '3326616984 ', 'ufl@ufl.edu', 2, 1, NULL);
     INSERT INTO event VALUES (NULL, 'Movie Night!', 'Entertainment', 'Come and watch movies with us!', '2022-4-4', 18, 1, '5886334570 ', 'ufl@ufl.edu', 2, 1, NULL);
     INSERT INTO event VALUES (NULL, 'Fight Club', 'Entertainment', 'The first rule of Fight Club...', '2022-5-4', 18, 2, '1948375048 ', 'fight@ufl.edu', 2, 1, NULL);
@@ -159,23 +175,47 @@ CREATE TABLE event (
     INSERT INTO event VALUES (NULL, 'Art Painting', 'Workshop/Conference', 'painting', '2022-4-4', 15, 3, '8418082226  ', 'art.club@ucf.edu', 1, 2, 3);
     INSERT INTO event VALUES (NULL, 'Art Drawing', 'Workshop/Conference', 'Drawing again', '2022-4-5', 15, 2, '8418082226  ', 'art.club@ucf.edu', 1, 2, 3);
     INSERT INTO event VALUES (NULL, 'Art Mapping', 'Workshop/Conference', 'Map and color', '2022-4-6', 15, 2, '8418082226  ', 'art.club@ucf.edu', 1, 2, 3);
+=======
+INSERT INTO event VALUES (NULL, 'Meeting 1', 'Career/Jobs', 'Business Meeting', '2022-04-12', 7, 1, '123456789', 'meeting@mail.com', 1, 0, NULL); 
+INSERT INTO location VALUES (NULL, 'UCF Downtown', '500 W Livingston St, Orlando, FL 32801', 28.54654355, -81.38628953);
+
+    /* public_event_request TABLE */
+DROP TABLE IF EXISTS public_event_request;
+CREATE TABLE public_event_request (
+    requestedBy int,
+    public_eventId int,
+    PRIMARY KEY (requestedBy, public_eventId),
+    FOREIGN KEY (requestedBy) REFERENCES admin (adminId),
+    FOREIGN KEY (public_eventId) REFERENCES event (eventId)
+);
+>>>>>>> b4f12fa00bcd3e01f4a5ed10e6779398d3a53d11
 
     /* event_comment TABLE */
 DROP TABLE IF EXISTS event_comment;
 CREATE TABLE event_comment (
     commentId int AUTO_INCREMENT,
+<<<<<<< HEAD
     comment_eventId int NOT NULL,
     comment_userName varchar(255) NOT NULL,
     comment_msg text NOT NULL,
     comment_datetime datetime NOT NULL,
+=======
+    comment_eventId int not null,
+    comment_userName varchar(40) not null,
+    comment_msg text not null,
+    comment_datetime datetime not null,
+>>>>>>> b4f12fa00bcd3e01f4a5ed10e6779398d3a53d11
     PRIMARY KEY (commentId),
     FOREIGN KEY (comment_eventId) REFERENCES event (eventId),
     FOREIGN KEY (comment_userName) REFERENCES user (username)
 );
 
+<<<<<<< HEAD
 INSERT INTO event_comment VALUES (NULL, 1, 'chanxay', 'I loved this event!', '2022-04-04 22:21:35');
 INSERT INTO event_comment VALUES (NULL, 2, 'cameron', 'What a great time', '2022-04-05 22:21:36');
 INSERT INTO event_comment VALUES (NULL, 3, 'maxim', 'Lots of fun to be had', '2022-04-06 22:21:37');
+=======
+>>>>>>> b4f12fa00bcd3e01f4a5ed10e6779398d3a53d11
 
     /* event_rating TABLE*/ 
     /* NOTE: this is just 1 rating instance from 1 user for 1 event */

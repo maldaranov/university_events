@@ -67,4 +67,19 @@ function editComments($db)
     }
 }
 
+function rateEvent($db)
+{
+    if (isset($_POST['eventRate'])) 
+    {
+        require 'server.php'; // grab the database
+        
+        $ratingValue = $_POST['ratingValue'];
+        $rating_eventId = $_POST['rating_eventId'];
+    
+        $sql = "INSERT INTO event_rating (ratingValue, rating_eventId) 
+                VALUES ('$ratingValue', '$rating_eventId')";
+        $result = $db->query($sql);
+    }
+}
+
 ?>

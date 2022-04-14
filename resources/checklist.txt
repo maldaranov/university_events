@@ -10,9 +10,9 @@
           user's email @ tag                    (✅) Maxim
 
 
-    * List of RSO event requests                (❌)
-        * visible to superadmin                 (❌)
-        * aprove                                (❌)
+    * List of Public event requests             (✅) Cameron 
+        * visible to superadmin                 (✅) Cameron 
+        * aprove                                (✅) Cameron 
         * event creation                        (❌)
 
     * Event feed                                (✅) Cameron 
@@ -25,19 +25,22 @@
 
         * separate RSO and public events        (❌)
 
+    * List RSOs                                 (✅) Cameron 
+        * join rsos                             (✅) Cameron 
+
     * Create/host event                         (❌)
         * create request if not RSO             (❌)
         * time conflict check                   (✅)
         * create location                       (❌)
         * create event                          (❌)
 
-    * Event page                                (❌)
+    * Event page                                (✅) Chanxay
         * event information                     (✅) Chanxay
-        * comment section                       (❌)
-            * create comment                    (❌)
-            * rate comment                      (❌)
-            * edit comment                      (❌)
-        * Bing or Google maps integration       (❌)
+        * comment section                       (✅) Chanxay
+            * create comment                    (✅) Chanxay
+            * rate comment                      (✅) Chanxay
+            * edit comment                      (✅) Chanxay
+        * Bing or Google maps integration       (✅) Chanxay
 
     * Create RSO                                (❌)
         * send request for creation             (❌)
@@ -45,8 +48,10 @@
           create an RSO                         (❌)
         * decide who is admin                   (❌)
 
-    * Create university profile                 (❌) Maxim
-    * Register for an event                     (❌)
+    * Create university profile                 (✅) Cameron 
+    * Display university list                   (✅) Cameron
+    * Display university profile upon clicking  (✅) Cameron
+    * Register for an event                     (✅) Cameron
     * Social media integration
       Share to Facebook/Google                  (❌)
 
