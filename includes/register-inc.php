@@ -59,7 +59,7 @@
             $result = mysqli_query($db, $query);
                 // CHECK: university in database
             if (!mysqli_num_rows($result)) {
-                header("location: ../register.php?error=nosuchuniversit&:".$univ_tag."!=".$result);
+                header("location: ../register.php?error=nosuchuniversity&:".$univ_tag."!=".$result);
                 exit();
             } else {
                 $univ_id = mysqli_query($db, $query);
@@ -74,7 +74,7 @@
                 // CHECK_1: username taken
                 mysqli_stmt_bind_param($stmt, "s", $username); // $stmt: bind needed parameters
                 mysqli_stmt_execute($stmt); // $stmt: execute
-                mysqli_stmt_store_result($stmt); // $stmt: store result inti internal buffer
+                mysqli_stmt_store_result($stmt); // $stmt: store result into internal buffer
                 $rowCount = mysqli_stmt_num_rows($stmt); // buffer: count rows
                 // username found
                 if ($rowCount > 0) {
@@ -91,9 +91,12 @@
                         // SECURITY: password encryption (optional)
                         // $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
                         mysqli_stmt_bind_param($stmt, "sisssi", $full_name, $univ_id, $email, $username, $password, $role_id); // $stmt: bind needed parameters
-                        mysqli_stmt_execute($stmt); // $stmt: execute
-                        header("location: ../login.php?success=registered");
-                        exit();
+                        if (mysqli_stmt_execute($stmt)) { // $stmt: execute
+                            header("location: ../login.php?success=registered");
+                        } else {
+                            header("location: ../login.php?success=nameORemail=exists");
+                            exit();
+                        }
                     }
                 }
             }

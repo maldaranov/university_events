@@ -63,10 +63,6 @@ div {
     text-align: center;
 }
 
-table.center {
-    margin: 0 auto;
-}
-
 label {
     display: block;
     margin: 15px auto;
@@ -104,10 +100,47 @@ textarea {
 }
 
 button {
-    width: 240px;
-    height: 60px;
-    font: 25px Monaco, Monospace;
-    background-color: #ba9b37;
-    color: #ffffff;
+    width: 100px;
+    height: 30px;
+    font-family: arial;
+    font-weight: 400;
+    font-size: 12px;
+    background-color: #282828;
+    color: #fff;
 }
-    
+
+.edit-form {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+}
+
+.edit-form button {
+    width: 40px;
+    height: 20px;
+    color: #282828;
+    background-color: #ddd;
+    border-color: #ddd;
+    opacity: 0.7;
+}
+
+.edit-form button:hover {
+    opacity: 1;
+}
+
+.comment-box {
+    width: 300px;
+    padding: 20px;
+    margin-bottom: 4px;
+    background-color: #ddd;
+    border-radius: 4px;
+    position: relative;
+}
+
+.comment-box p {
+    font-family: arial;
+    font-size: 14px;
+    line-height: 16px;
+    color: #282828;
+    font-weight: 100;
+}

@@ -1,0 +1,21 @@
+Prerequisites:
+1) Microsoft Visual C++ 2008 Redistributable Package (x64)
+2) Microsoft Visual C++ 2010 Redistributable Package (x64)
+3) Visual C++ Redistributable for Visual Studio 2012 Update 4
+4) Visual C++ Redistributable Packages for Visual Studio 2013
+5) Visual C++ Redistributable for Visual Studio 2015
+6) Microsoft visual c++ 2017 redistributable package
+
+
+Go to https://www.wampserver.com/en/
+Download WAM SERVER 64 BITS (X64)
+Launch WAMP installer
+Do initial setup and choose a location to install wamp
+Finish installation
+
+Open WAMP
+Select WAMP icon in the bottom right
+If having problems with the server, check the instructions in the link below.
+
+
+Install WAMP (https://www.c-sharpcorner.com/article/how-to-install-wamp-server-in-windows-10/)

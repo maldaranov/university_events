@@ -14,6 +14,7 @@ Value: 7 -> 7 a.m - 8 a.m
 etc.
 
 Privacy:
-0 - public
+0 - public (approved)
 1 - private
 2 - rso
+3 - public (not approved)

@@ -12,7 +12,7 @@
 
             <!-- event category input -->
             <label class="required" for="eCategory"> Category </label>
-            <select id="eCategory" name="eventCategory">
+            <select id="eCategory" required name="eventCategory">
                 <option value=""> Choose a category </option>
                 <option value="Academic ">  Academic </option>
                 <option value="Arts Exhibit">  Arts Exhibit </option>
@@ -35,11 +35,11 @@
 
             <!-- event date input -->
             <label class="required" for="eDate"> Date </label>
-            <input id="eDate" type="date" name="eventDate" placeholder="date">
+            <input id="eDate" type="date" required name="eventDate" placeholder="date">
 
             <!-- event time slot input -->
             <label class="required" for="eTime"> Time slot </label>
-            <select id="eTime" name="eventTime">
+            <select id="eTime" required name="eventTime">
                 <option value=""> Choose a time slot </option>
                 <option value="6"> 6:00 a.m - 7:00 a.m </option>
                 <option value="7"> 7:00 a.m - 8:00 a.m </option>
@@ -60,28 +60,29 @@
             </select>
 
             <!-- event contact phone input -->
-            <label class="required" for="ePhone"> Contact Phone </label>
-            <input id="ePhone" type="tel" name="eventPhone" placeholder="Phone Number">
+            <label class="required" for="ePhone"> Contact Phone (no dashes) </label>
+            <input id="ePhone" type="tel" required name="eventPhone" placeholder="Phone Number">
 
             <!-- event email input -->
             <label class="required" for="eEmail"> Contact Email </label>
-            <input id="eEmail" type="email" name="eventEmail" placeholder="Email">
+            <input id="eEmail" type="email" required name="eventEmail" placeholder="Email">
 
             <!-- event privacy input -->
             <label class="required" for="ePrivacy"> Privacy </label>
-            <select id="ePrivacy" name="eventPrivacy">
-                <option value="0"> Public </option>
-                <option value="1"> Private </option>
-                <option value="2"> RSO </option>
+            <select id="ePrivacy" required name="eventPrivacy">
+                <option value="0"> Choose privacy </option>
+                <option value="1"> Public </option>
+                <option value="2"> Private </option>
+                <option value="3"> RSO </option>
             </select>   
             
             <!-- event rso id input -->
             <label for="eRsoId"> (if RSO privacy chosen) </label>
-            <input id="eRsoId" type="text" name="eventRsoId" placeholder="RSO Name">            
+            <input id="eRsoId" type="text" name="eventRsoName" placeholder="RSO Name">            
 
             <!-- event location input-->
-            <label class="required" for="eLocation"> Location </label>
-            <textarea id="eLocation" name="eventLocation" rows=5 cols=27 maxlength=500 placeholder="1234 Street Name,&#10City, State, 12345"></textarea>
+            <label class="required" for="eLocation"> Location (no commas) </label>
+            <textarea id="eLocation" required name="eventLocation" rows=5 cols=27 maxlength=500 placeholder="1234 Street Name City State 12345"></textarea>
 
             <!-- event description input -->
             <label for="eDescription"> Description: </label>
@@ -89,7 +90,3 @@
             <p><button type="submit" name="submit">HOST</button></p>
     </form>
 </div>
-
-<?php
-    require_once 'includes/footer.php';
-?>

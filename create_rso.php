@@ -7,12 +7,10 @@
 
     <form action="includes/create_rso-inc.php" method="post">
             <!-- RSO name input -->
-            <label for="eName"> Event name: </label>
-            <input id="eName" type="text" required size=30 name="eventName" placeholder="name">
+            <label class="required" for="eName"> RSO name: </label>
+            <input id="rName" type="text" required size=30 name="rsoName" placeholder="name">
+            <p><button type="submit" name="submit">CREATE</button></p>
             
     </form>
 </div>
 
-<?php
-    require_once 'includes/footer.php';
-?>

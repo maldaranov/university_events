@@ -45,13 +45,16 @@ INSERT INTO rso_member VALUES (1, 4);
 INSERT INTO rso_member VALUES (1, 5);
 INSERT INTO rso_member VALUES (1, 6);
 
-DELIMITER $$
-    CREATE TRIGGER rso_status_update AFTER INSERT ON rso_member
-    FOR EACH ROW BEGIN
-        IF ((SELECT COUNT(*) FROM rso_member WHERE rso_member.rsoId = NEW.rsoId) > 4) THEN
-            UPDATE rso 
-                SET rso_active = true
-                WHERE rsoId = NEW.rsoId;
-        END IF;
-END $$
+DELIMITER $$;
+
+CREATE TRIGGER RSOStatusUpdateActive
+    AFTER INSERT ON rso_members
+ FOR EACH ROW BEGIN
+  IF ((SELECT COUNT(*) FROM rso_members M WHERE M.rsoId = NEW.rsoId) > 1)
+        THEN
+           UPDATE rso
+           SET rso_active = 1
+          WHERE rsoId = NEW.rsoId
+  END IF;
+ END $$
 DELIMITER ;
