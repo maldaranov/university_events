@@ -34,11 +34,11 @@
         * create location                       (❌)
         * create event                          (❌)
 
-    * Event page                                (❌)
+    * Event page                                (✅) Chanxay
         * event information                     (✅) Chanxay
-        * comment section                       (❌)
+        * comment section                       (✅) Chanxay
             * create comment                    (✅) Chanxay
-            * rate comment                      (❌)
+            * rate comment                      (✅) Chanxay
             * edit comment                      (✅) Chanxay
         * Bing or Google maps integration       (✅) Chanxay
 

@@ -11,13 +11,26 @@
     $get_event = "SELECT * FROM event WHERE eventId = $eid";
     $result = mysqli_query($db, $get_event);
     $event_info = mysqli_fetch_array($result);
+    $event_locId = $event_info['eventLocationId'];
 
     // Grabbing address for map iframe
-    $query = "SELECT locationAddress FROM event LEFT JOIN location ON event.eventLocationId = location.locationId";
+    $query = "SELECT locationAddress FROM event LEFT JOIN location ON $event_locId = location.locationId";
     $result = mysqli_query($db, $query);
     $address_info = mysqli_fetch_array($result);
     $address = $address_info['locationAddress'];
 
+    $query = "SELECT AVG(ratingValue) FROM event_rating WHERE rating_eventId = $eid";
+    $result = mysqli_query($db, $query);
+    $rate_var;
+    if ($result = mysqli_fetch_array($result)) 
+    {
+        $rate_var = $result;
+    } 
+    else 
+    {
+        $rate_var = 0;
+    }
+    
     // FETCH: individual event
     $event_id = $event_info['eventId'];
     $event_name= $event_info['eventName'];
@@ -34,13 +47,31 @@
     <p align=center> Category: $event_time </p>
     <p align=center> Privacy: $event_privacy </p>
     <p align=center> Description: $event_description </p>
+    <p align=center> Rating: ".$rate_var['AVG(ratingValue)']."</p>
     ";
      print $display_block;
 ?>
 
+<!-- Event Rating -->
+<h3 style="text-align:center">Rate the event</h3>
+<?php
+echo "<form action='".rateEvent($db)."' method='post'>
+    <input type='hidden' name='rating_eventId' value='".$event_id."'>
+    <select id='ratingValue' name='ratingValue'>
+        <option value=''></option>
+        <option value='1'> 1 </option>
+        <option value='2'> 2 </option>
+        <option value='3'> 3 </option>
+        <option value='4'> 4 </option>
+        <option value='5'> 5 </option>
+    </select> 
+    <p align=center><button type='submit' name='eventRate'>Rate</button></p>
+</form>";
+?>
+
 <div>
 <iframe width="50%" height="300" src="https://maps.google.com/maps?q=<?php echo $address; ?>&output=embed"></iframe>
-</div>
+</div>   
 
 <!-- Comment text box -->
 <h3 style="text-align:center">Leave a comment:</h3>
@@ -55,9 +86,5 @@ echo "<form action='".setComments($db)."' method='post'>
 
 getComments($db);
 
-?>
-
-<?php
-    require_once 'includes/footer.php';
 ?>
 
