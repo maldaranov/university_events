@@ -69,7 +69,7 @@
     // CHECK: is RSO event being created by the admin who owns that RSO
     // SAVE: RSO ID
     } elseif (($event_privacy == 3) && !empty($event_rsoName)) {
-        $query = "SELECT rsoId AND rso_active FROM rso WHERE rsoName = ? AND ownerId = ?";
+        $query = "SELECT rsoId, rso_active FROM rso WHERE rsoName = ? AND ownerId = ?";
         $stmt = mysqli_stmt_init($db); // $stmt: initialize
         if (!mysqli_stmt_prepare($stmt, $query)) { // $stmt: prepare
             header("location: ../create_event.php?error=sqlerror1");

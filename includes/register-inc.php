@@ -57,9 +57,10 @@
                 // lookup and save univId using univ_tag
             $query = "SELECT univId FROM university WHERE univTag = '$univ_tag_noesc'";
             $result = mysqli_query($db, $query);
+            $row = mysqli_fetch_assoc($result);
                 // CHECK: university in database
             if (!mysqli_num_rows($result)) {
-                header("location: ../register.php?error=nosuchuniversity&:".$univ_tag."!=".$result);
+                header("location: ../register.php?error=nosuchuniversity&:".$univ_tag."!=".$row['univId']);
                 exit();
             } else {
                 $univ_id = mysqli_query($db, $query);

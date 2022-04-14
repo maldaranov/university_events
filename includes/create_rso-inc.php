@@ -38,6 +38,18 @@
                 } else {
                     mysqli_stmt_bind_param($stmt, "isii", $rso_active, $rso_name, $rso_ownerId, $rso_univId); // $stmt: bind needed parameters
                     mysqli_stmt_execute($stmt); // $stmt: execute
+
+                    // INSERT as member
+                    $query = "INSERT INTO rso_members (rsoId, userId) VALUES (?, ?)";
+                    $stmt = mysqli_stmt_init($db); // $stmt: initialize
+                    if (!mysqli_stmt_prepare($stmt, $query)) { // $stmt: prepare
+                        header("location: ../register.php?error=sqlerror2");
+                        exit();
+                    } else {
+                         mysqli_stmt_bind_param($stmt, "ii", $rso_id, $rso_ownerId); // $stmt: bind needed parameters
+                         mysqli_stmt_execute($stmt); // $stmt: execute
+                    }
+
                     header("location: ../rso_list.php?success=rsocreated");
                     exit();
                 }
