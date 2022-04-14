@@ -14,10 +14,16 @@
     $event_info = mysqli_fetch_array($result);
     $event_locId = $event_info['eventLocationId'];
 
-    // $query = "SELECT locationAddress FROM event LEFT JOIN location ON $event_locId = location.locationId";
-    // $result = mysqli_query($db, $query);
-    // $address_info = mysqli_fetch_array($result);
-    // $address = $address_info['locationAddress'];
+    // ACTION: calculate the average rating of the event
+    $query = "SELECT AVG(ratingValue) FROM event_rating WHERE rating_eventId = $eid";
+    $result = mysqli_query($db, $query);
+    $event_rating;
+    $result = mysqli_fetch_array($result);
+    if ($result != 0) {
+        $event_rating = round($result['AVG(ratingValue)'], 2);
+    } else {
+        $event_rating = 0;
+    }
 
     // FETCH: individual event
     $event_id = $event_info['eventId'];
@@ -43,7 +49,7 @@
     <p align=center> Contact Email: $event_email </p>
     <p align=center> Privacy: $event_privacy </p>
     <p align=center> Description: $event_description </p>
-    <p align=center> Rating: ".$rate_var['AVG(ratingValue)']."</p>
+    <p align=center> Rating: ".$event_rating."</p>
     ";
      print $display_block;
 ?>
@@ -81,4 +87,18 @@ echo "<form action='".setComments($db)."' method='post'>
 </form>";
 
 getComments($db);
+
+// FUNCTION: rate event
+function rateEvent($db)
+{
+    if (isset($_POST['eventRate'])) 
+    {
+        $ratingValue = $_POST['ratingValue'];
+        $rating_eventId = $_POST['rating_eventId'];
+
+        $sql = "INSERT INTO event_rating (ratingValue, rating_eventId) 
+                VALUES ('$ratingValue', '$rating_eventId')";
+        $result = $db->query($sql);
+    }
+}
 ?>
