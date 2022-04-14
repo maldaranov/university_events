@@ -48,6 +48,38 @@
                 }
                 header("location: rso_list.php?success=rsojoined=".$rid);
             }
+        }   else if (isset($_GET['leftRso'])) {
+            $leftrid = $_GET['leftRso'];
+            $query2 = "DELETE FROM rso_members WHERE (userId = $user_id AND rsoId = $leftrid)";
+            echo $leftrid;
+            echo $user_id;
+            $stmt = mysqli_stmt_init($db); // $stmt: initialize
+            if (!mysqli_stmt_prepare($stmt, $query2)) {
+                header("location: rso_list.php?error=sqlerror1");
+                exit();
+            } else {
+                // UPDATE: user joins the RSO
+                mysqli_stmt_bind_param($stmt, "ii", $leftrid, $user_id); // $stmt: bind needed parameters
+                mysqli_stmt_execute($stmt); // $stmt: execute
+                // UPDATE: activate RSO with 4 students
+                // FETCH: count members in the RSO
+                $query = "SELECT * FROM rso_members WHERE rsoId = $leftrid";
+                $result = mysqli_query($db, $query);
+                $num_members = mysqli_num_rows($result);
+                // FETCH: get RSO status
+                $query = "SELECT rso_active FROM rso WHERE rsoId = $leftrid";
+                $result = mysqli_query($db, $query);
+                $row = mysqli_fetch_assoc($result);
+                $rso_state = $row['rso_active'];
+                // CHECK: is RSO inactive and number of members is >= 4
+                if ($rso_state == 1 && $num_members < 4) {
+                    // UPDATE: activate RSO
+                    $query = "UPDATE rso SET rso_active = 0 WHERE rsoId = $leftrid";
+                    $stmt = mysqli_stmt_init($db); // $stmt: initialize
+                    mysqli_query($db, $query);
+                }
+                header("location: rso_list.php?success=rsoleft=".$leftrid);
+            }
         }
 
         // FETCH: RSOs from the same university as the user
@@ -83,6 +115,7 @@
                     <td><strong>$rso_status</strong></a><br>
                     <td><strong>$rso_name</strong></a><br>
                     <td><strong>Joined</strong></a><br>
+                    <td><a href=\"rso_list.php?leftRso=$rso_id\">Leave</a>
                     </tr>"; 
                 }  else {
                     $display_block .= "
